@@ -206,7 +206,11 @@ header {
     }
 }
 
+<<<<<<< HEAD
 /* 无照片提示样式 */
+=======
+/* 无照片消息样式 */
+>>>>>>> 6490587 (initial commit)
 .no-photos-message {
     text-align: center;
     padding: 50px 20px;
@@ -215,24 +219,38 @@ header {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     margin: 50px auto;
     max-width: 400px;
+<<<<<<< HEAD
     animation: fadeIn 0.5s ease-out;
+=======
+    animation: fadeIn 1s ease-in;
+>>>>>>> 6490587 (initial commit)
 }
 
 .no-photos-message i {
     font-size: 48px;
     color: var(--primary-color);
     margin-bottom: 20px;
+<<<<<<< HEAD
     display: block;
+=======
+>>>>>>> 6490587 (initial commit)
 }
 
 .no-photos-message h2 {
     color: var(--text-color);
     margin-bottom: 10px;
+<<<<<<< HEAD
     font-size: 24px;
+=======
+>>>>>>> 6490587 (initial commit)
 }
 
 .no-photos-message p {
     color: #666;
+<<<<<<< HEAD
     font-size: 16px;
     line-height: 1.5;
+=======
+    font-size: 0.9em;
+>>>>>>> 6490587 (initial commit)
 } 
