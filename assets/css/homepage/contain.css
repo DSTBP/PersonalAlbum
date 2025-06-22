@@ -1,0 +1,260 @@
+/* 内容区域基础样式 */
+#content-section {
+    padding: 2rem;
+    background-color: #f4f4f4; /* 浅灰色背景 */
+}
+
+/* 内容分类样式 */
+.content-category {
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+/* 奇偶分类使用不同背景色，增强视觉区分度 */
+.content-category:nth-of-type(odd) {
+    background-color: #f8f8f8;
+}
+
+.content-category h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #333; /* 深灰色标题 */
+}
+
+/* 画廊网格布局 */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 画廊项目卡片样式 */
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* 轻微阴影效果 */
+    cursor: pointer;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 保持宽高比，裁剪超出部分 */
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+/* 悬停时图片放大效果 */
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+/* 图片覆盖层样式 */
+.gallery-item .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    color: white;
+    padding: 3rem 1.5rem 1.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    text-align: left;
+}
+
+/* 悬停时显示覆盖层 */
+.gallery-item:hover .overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.overlay h3 {
+    margin: 0 0 0.5rem 0;
+}
+
+.overlay p {
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* 时间线轮播样式 (Netflix风格) */
+#timeline .contain {
+    position: relative;
+    width: 100%;
+}
+
+/* 水平滚动容器 */
+#timeline .row {
+    position: relative;
+    overflow: hidden; /* 隐藏非当前展示的图片 */
+}
+
+/* 轮播内容容器 */
+#timeline .row__inner {
+    display: flex;
+    transition: transform 1.5s ease-in-out;
+    font-size: 0;
+    white-space: nowrap;
+    margin: 70.3125px 0;
+    padding-bottom: 10px;
+}
+
+/* 时间线项目卡片样式 */
+#timeline .tile {
+    flex: none;
+    position: relative;
+    display: inline-block;
+    width: 250px;
+    height: 180px;
+    margin-right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 450ms all;
+    transform-origin: center left;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* 时间线项目图片样式 - 确保图片填满容器 */
+#timeline .tile__img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill; /* 保持宽高比，裁剪超出部分 */
+    object-position: center; /* 居中裁剪 */
+}
+
+/* 时间线项目详情覆盖层 */
+#timeline .tile__details {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    font-size: 10px;
+    opacity: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
+    transition: 450ms opacity;
+    color: #ecf0f1;
+}
+
+/* 播放按钮装饰元素 */
+#timeline .tile__details:after,
+#timeline .tile__details:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+}
+
+/* 播放按钮外圈 */
+#timeline .tile__details:after {
+    margin-top: -25px;
+    margin-left: -25px;
+    width: 50px;
+    height: 50px;
+    border: 3px solid #ecf0f1;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+/* 播放按钮图标 */
+#timeline .tile__details:before {
+    content: '▶';
+    left: 0;
+    width: 100%;
+    font-size: 30px;
+    margin-left: 7px;
+    margin-top: -18px;
+    text-align: center;
+    z-index: 2;
+    color: #ecf0f1;
+}
+
+/* 悬停时显示详情 */
+#timeline .tile:hover .tile__details {
+    opacity: 1;
+}
+
+/* 标题位置 */
+#timeline .tile__title {
+    position: absolute;
+    bottom: 0;
+    padding: 10px;
+}
+
+/* 轮播交互效果 */
+#timeline .row__inner:hover {
+    transform: translate3d(-45px, 0, 0);
+}
+
+#timeline .row__inner:hover .tile {
+    opacity: 1;
+}
+
+#timeline .row__inner:hover .tile:hover {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+#timeline .tile:hover ~ .tile {
+    transform: translate3d(0, 0, 0);
+}
+
+/* 新增：时间线轮播控件样式 */
+#timeline .timeline-nav {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    display: none; /* 隐藏切换按钮 */
+    justify-content: space-between;
+    transform: translateY(-50%);
+    z-index: 10;
+    padding: 0 1rem; /* 调整内边距，让按钮向内靠拢 */
+    box-sizing: border-box;
+}
+
+#timeline .timeline-nav .btn {
+    background: rgba(0,0,0,0.5);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255,255,255,0.7);
+}
+
+/* 新增：状态点容器 */
+#timeline .timeline-dots {
+    text-align: center;
+    padding-top: 1.5rem;
+}
+
+#timeline .timeline-dots .dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#timeline .timeline-dots .dot.active {
+    background-color: #555;
+}

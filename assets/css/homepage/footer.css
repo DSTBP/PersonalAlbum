@@ -1,0 +1,97 @@
+footer {
+    background-color: #333;
+    color: #b3b3b3;
+    position: relative;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2rem 4rem;
+    justify-content: space-between;
+}
+
+.footer-section {
+    padding: 1rem;
+    min-width: 250px;
+    text-align: left;
+}
+
+.footer-section.about {
+    flex: 2;
+}
+
+.footer-section.links {
+    flex: 1;
+    padding-left: 3rem;
+}
+
+.footer-section.social {
+    flex: 1;
+    text-align: right;
+}
+
+.logo-text {
+    font-size: 1.8rem;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.footer-section h2 {
+    color: white;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul a {
+    color: #b3b3b3;
+    text-decoration: none;
+    line-height: 2;
+    transition: color 0.3s;
+}
+
+.footer-section ul a:hover {
+    color: white;
+}
+
+.footer-section p {
+    margin-bottom: 1rem;
+}
+
+.contact span {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.socials a {
+    border: 1px solid #b3b3b3;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    display: inline-block;
+    border-radius: 50%;
+    margin: 0 .5rem;
+    color: #b3b3b3;
+    transition: all .3s;
+}
+
+.socials a:hover {
+    color: white;
+    border: 1px solid white;
+}
+
+.footer-bottom {
+    background-color: #1e1e1e;
+    color: #686868;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    width: 100%;
+}
+
+ion-icon {
+    vertical-align: middle;
+}

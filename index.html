@@ -1,47 +1,401 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
-    <title>我的个人相册</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>荏苒签・四载浮光札</title>
+    <link rel="stylesheet" href="assets/css/homepage/loading.css">
+    <link rel="stylesheet" href="assets/css/homepage/header.css">
+    <link rel="stylesheet" href="assets/css/homepage/carousel.css">
+    <link rel="stylesheet" href="assets/css/homepage/contain.css">
+    <link rel="stylesheet" href="assets/css/homepage/footer.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
+
 <body>
-    <div class="container">
-        <header>
-            <h1 class="title">我的个人相册</h1>
-            <div class="theme-toggle">
-                <i class="fas fa-moon"></i>
-            </div>
-        </header>
-
-        <div class="carousel-container">
-            <div class="carousel">
-                <div class="carousel-inner">
-                    <!-- 轮播图内容将通过 JavaScript 动态添加 -->
-                </div>
-                <button class="carousel-button prev">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="carousel-button next">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-        </div>
-
-        <div class="gallery">
-            <div class="gallery-grid">
-                <!-- 相册内容将通过 JavaScript 动态添加 -->
-            </div>
-        </div>
-
-        <div class="lightbox">
-            <span class="close-lightbox">&times;</span>
-            <img class="lightbox-content" id="lightbox-img">
+    <!-- loading动画 -->
+    <div class="loading">
+        <div class="loading-text">
+            <span class="loading-text-words">谨</span>
+            <span class="loading-text-words">以</span>
+            <span class="loading-text-words">此</span>
+            <span class="loading-text-words">网</span>
+            <span class="loading-text-words">站</span>
+            <span class="loading-text-words">，</span>
+            <span class="loading-text-words">纪</span>
+            <span class="loading-text-words">念</span>
+            <span class="loading-text-words">我</span>
+            <span class="loading-text-words">那</span>
+            <span class="loading-text-words">小</span>
+            <span class="loading-text-words">有</span>
+            <span class="loading-text-words">遗</span>
+            <span class="loading-text-words">憾</span>
+            <span class="loading-text-words">的</span>
+            <span class="loading-text-words">青</span>
+            <span class="loading-text-words">春</span>
+            <span class="loading-text-words">。</span>
         </div>
     </div>
-    <script src="assets/js/script.js"></script>
+
+    <!-- <div class="loader">
+        <ul class="hexagon-container">
+            <li class="hexagon hex_1"></li>
+            <li class="hexagon hex_2"></li>
+            <li class="hexagon hex_3"></li>
+            <li class="hexagon hex_4"></li>
+            <li class="hexagon hex_5"></li>
+            <li class="hexagon hex_6"></li>
+            <li class="hexagon hex_7"></li>
+        </ul>
+    </div> -->
+
+    <div id="page-wrapper" style="visibility: hidden; opacity: 0;">
+        <header>
+            <!-- 页眉内容 -->
+            <h1>荏苒签・四载浮光札</h1>
+            <nav>
+                <a href="#carousel-section">扉页</a>
+                <a href="#timeline">时光脉络</a>
+                <a href="#imagery">意象集录</a>
+                <a href="#cityscape">市井长卷</a>
+                <a href="#moments">瞬间纪闻</a>
+            </nav>
+        </header>
+
+        <main id="carousel-section">
+            <ul class='slider'>
+                <li class='item' data-id="1"
+                    style="background-image: url('photos/26.jpg')">
+                    <div class='content'>
+                        <h2 class='title'>"Lossless Youths"</h2>
+                        <p class='description'> Lorem ipsum, dolor sit amet consectetur
+                            adipisicing elit. Tempore fuga voluptatum, iure corporis inventore
+                            praesentium nisi. Id laboriosam ipsam enim. </p>
+                        <button>Read More</button>
+                    </div>
+                </li>
+                <li class='item' data-id="2" style="background-image: url('photos/27.jpg')">
+                    <div class='content'>
+                        <h2 class='title'>"Estrange Bond"</h2>
+                        <p class='description'> Lorem ipsum, dolor sit amet consectetur
+                            adipisicing elit. Tempore fuga voluptatum, iure corporis inventore
+                            praesentium nisi. Id laboriosam ipsam enim. </p>
+                        <button>Read More</button>
+                    </div>
+                </li>
+                <li class='item' data-id="3"
+                    style="background-image: url('photos/28.jpg')">
+                    <div class='content'>
+                        <h2 class='title'>"The Gate Keeper"</h2>
+                        <p class='description'> Lorem ipsum, dolor sit amet consectetur
+                            adipisicing elit. Tempore fuga voluptatum, iure corporis inventore
+                            praesentium nisi. Id laboriosam ipsam enim. </p>
+                        <button>Read More</button>
+                    </div>
+                </li>
+                <li class='item' data-id="4"
+                    style="background-image: url('photos/29.jpg')">
+                    <div class='content'>
+                        <h2 class='title'>"Last Trace Of Us"</h2>
+                        <p class='description'>
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure
+                            corporis
+                            inventore praesentium nisi. Id laboriosam ipsam enim.
+                        </p>
+                        <button>Read More</button>
+                    </div>
+                </li>
+                <li class='item' data-id="5"
+                    style="background-image: url('photos/30.jpg')">
+                    <div class='content'>
+                        <h2 class='title'>"Urban Decay"</h2>
+                        <p class='description'>
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure
+                            corporis
+                            inventore praesentium nisi. Id laboriosam ipsam enim.
+                        </p>
+                        <button>Read More</button>
+                    </div>
+                </li>
+                <li class='item' data-id="6"
+                    style="background-image: url('photos/31.jpg')">
+                    <div class='content'>
+                        <h2 class='title'>"The Migration"</h2>
+                        <p class='description'> Lorem ipsum, dolor sit amet consectetur
+                            adipisicing elit. Tempore fuga voluptatum, iure corporis inventore
+                            praesentium nisi. Id laboriosam ipsam enim. </p>
+                        <button>Read More</button>
+                    </div>
+                </li>
+            </ul>
+            <nav class='nav'>
+                <ion-icon class='btn prev' name="arrow-back-outline"></ion-icon>
+                <div class="dots"></div>
+                <ion-icon class='btn next' name="arrow-forward-outline"></ion-icon>
+            </nav>
+        </main>
+
+        <section id="timeline" class="content-category">
+            <div class="contain">
+                <h2>时光脉络</h2>
+                <p>
+                    那些被定格的瞬间，串联成我们独一无二的故事。
+                </p>
+
+                <div class="row">
+                    <div class="row__inner">
+                        <div class="tile">
+                            <div class="tile__media">
+                                <img class="tile__img" src="photos/1.jpg" alt="" />
+                            </div>
+                            <div class="tile__details">
+                                <div class="tile__title">
+                                    校园记忆
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tile">
+                            <div class="tile__media">
+                                <img class="tile__img" src="photos/2.jpg" alt="" />
+                            </div>
+                            <div class="tile__details">
+                                <div class="tile__title">
+                                    初入社会
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tile">
+                            <div class="tile__media">
+                                <img class="tile__img" src="photos/4.jpg" alt="" />
+                            </div>
+                            <div class="tile__details">
+                                <div class="tile__title">
+                                    城市一角
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tile">
+                            <div class="tile__media">
+                                <img class="tile__img" src="photos/5.jpg" alt="" />
+                            </div>
+                            <div class="tile__details">
+                                <div class="tile__title">
+                                    旅途风景
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tile">
+                            <div class="tile__media">
+                                <img class="tile__img"
+                                    src="photos/6.jpg" alt="" />
+                            </div>
+                            <div class="tile__details">
+                                <div class="tile__title">
+                                    某个午后
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tile">
+                            <div class="tile__media">
+                                <img class="tile__img"
+                                    src="photos/7.jpg" alt="" />
+                            </div>
+                            <div class="tile__details">
+                                <div class="tile__title">
+                                    朋友小聚
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tile">
+                            <div class="tile__media">
+                                <img class="tile__img"
+                                    src="photos/8.jpg" alt="" />
+                            </div>
+                            <div class="tile__details">
+                                <div class="tile__title">
+                                    一次远行
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tile">
+                            <div class="tile__media">
+                                <img class="tile__img"
+                                    src="photos/9.jpg" alt="" />
+                            </div>
+                            <div class="tile__details">
+                                <div class="tile__title">
+                                    一次远行
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tile">
+                            <div class="tile__media">
+                                <img class="tile__img"
+                                    src="photos/10.jpg" alt="" />
+                            </div>
+                            <div class="tile__details">
+                                <div class="tile__title">
+                                    一次远行
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tile">
+                            <div class="tile__media">
+                                <img class="tile__img"
+                                    src="photos/11.jpg" alt="" />
+                            </div>
+                            <div class="tile__details">
+                                <div class="tile__title">
+                                    一次远行
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tile">
+                            <div class="tile__media">
+                                <img class="tile__img"
+                                    src="photos/12.jpg" alt="" />
+                            </div>
+                            <div class="tile__details">
+                                <div class="tile__title">
+                                    一次远行
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <nav class='timeline-nav'>
+                    <ion-icon class='btn prev' name="arrow-back-outline"></ion-icon>
+                    <ion-icon class='btn next' name="arrow-forward-outline"></ion-icon>
+                </nav>
+                <div class="timeline-dots"></div>
+            </div>
+        </section>
+
+        <section id="imagery" class="content-category">
+            <h2>意象集录</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="photos/113.jpg" alt="意象集录 1">
+                    <div class="overlay">
+                        <h3>光与影</h3>
+                        <p>捕捉穿过指尖的阳光。</p>
+                    </div>
+                </div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/400x300.png?text=Photo+6" alt="意象集录 2">
+                    <div class="overlay">
+                        <h3>孤独的树</h3>
+                        <p>在旷野中独自生长，却也自由。</p>
+                    </div>
+                </div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/400x300.png?text=Photo+7" alt="意象集录 3">
+                    <div class="overlay">
+                        <h3>倒影</h3>
+                        <p>水面之下，是另一个平行世界。</p>
+                    </div>
+                </div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/400x300.png?text=Photo+8" alt="意象集录 4">
+                    <div class="overlay">
+                        <h3>几何之美</h3>
+                        <p>建筑与线条构成的和谐乐章。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cityscape" class="content-category">
+            <h2>市井长卷</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="photos/57.jpg" alt="市井长卷 1">
+                    <div class="overlay">
+                        <h3>街角咖啡馆</h3>
+                        <p>一个充满故事和香气的地方。</p>
+                    </div>
+                </div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/400x300.png?text=Photo+10" alt="市井长卷 2">
+                    <div class="overlay">
+                        <h3>霓虹灯下</h3>
+                        <p>城市的夜晚，比白日更喧嚣。</p>
+                    </div>
+                </div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/400x300.png?text=Photo+11" alt="市井长卷 3">
+                    <div class="overlay">
+                        <h3>老市场的喧嚣</h3>
+                        <p>充满人间烟火气的地方。</p>
+                    </div>
+                </div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/400x300.png?text=Photo+12" alt="市井长卷 4">
+                    <div class="overlay">
+                        <h3>归家的人</h3>
+                        <p>地铁里疲惫但坚定的身影。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="moments" class="content-category">
+            <h2>瞬间纪闻</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="https://via.placeholder.com/400x300.png?text=Photo+13" alt="瞬间纪闻 1">
+                    <div class="overlay">
+                        <h3>孩子的笑脸</h3>
+                        <p>纯真无邪，融化一切。</p>
+                    </div>
+                </div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/400x300.png?text=Photo+14" alt="瞬间纪闻 2">
+                    <div class="overlay">
+                        <h3>落日余晖</h3>
+                        <p>一天中最温柔的时刻。</p>
+                    </div>
+                </div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/400x300.png?text=Photo+15" alt="瞬间纪闻 3">
+                    <div class="overlay">
+                        <h3>雨中漫步</h3>
+                        <p>撑着伞，听雨滴的歌唱。</p>
+                    </div>
+                </div>
+                <div class="gallery-item"><img src="https://via.placeholder.com/400x300.png?text=Photo+16" alt="瞬间纪闻 4">
+                    <div class="overlay">
+                        <h3>友人的拥抱</h3>
+                        <p>无声的支持，最温暖的力量。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section about">
+                    <p>
+                        谨以此网站，纪念我的青春，那是一段小有遗憾的幸福时光。
+                    </p>
+                    <div class="contact">
+                        <span><ion-icon name="call-outline"></ion-icon> &nbsp; (+86) 181-2054-1454</span>
+                        <span><ion-icon name="mail-outline"></ion-icon> &nbsp; dstbp@qq.com</span>
+                    </div>
+                </div>
+                <!-- <div class="footer-section social">
+                    <h3>社交媒体</h3>
+                    <br>
+                    <div class="socials">
+                        <a href="#"><ion-icon name="logo-youtube"></ion-icon></a>
+                        <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+                        <a href="#"><ion-icon name="logo-twitter"></ion-icon></a>
+                        <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
+                    </div>
+                </div> -->
+            </div>
+            <div class="footer-bottom">
+                &copy; 2025 荏苒签・四载浮光札 | Designed by DSTBP
+            </div>
+        </footer>
+    </div>
+
+    <script src="assets/js/homepage/header.js"></script>
+    <script src="assets/js/homepage/carousel.js"></script>
+    <script src="assets/js/homepage/contain.js"></script>
+    <script src="assets/js/homepage/footer.js"></script>
 </body>
-</html> 
+
+</html>
