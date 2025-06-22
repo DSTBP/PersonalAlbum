@@ -25,23 +25,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const rowInner = timeline.querySelector('.row__inner');
     const tiles = Array.from(timeline.querySelectorAll('.tile'));
-    const dotsContainer = timeline.querySelector('.timeline-dots');
 
-    if (!rowInner || !tiles.length || !dotsContainer) {
+    if (!rowInner || !tiles.length) {
         console.error('Timeline carousel elements not found');
         return;
     }
 
-    // 1. 计算可见图片数量（以10为最大，自动适配）
-    function getVisibleCount() {
-        const containerWidth = rowInner.offsetWidth || rowInner.parentElement.offsetWidth;
-        const tileWidth = tiles[0].offsetWidth + parseInt(getComputedStyle(tiles[0]).marginRight, 10);
-        return Math.min(10, Math.floor(containerWidth / tileWidth) || 10);
-    }
-    let visibleCount = getVisibleCount();
-    window.addEventListener('resize', () => {
-        visibleCount = getVisibleCount();
-    });
+    // 固定可见图片数量为7
+    const visibleCount = 7;
 
     // 2. 首尾各克隆visibleCount张slide
     const totalSlides = tiles.length;
@@ -63,25 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. 设置初始位置
     rowInner.style.transform = `translateX(${-slideWidth * currentIndex}px)`;
 
-    // 5. Dots
-    dotsContainer.innerHTML = '';
-    for (let i = 0; i < totalSlides; i++) {
-        const dot = document.createElement('div');
-        dot.classList.add('dot');
-        dot.addEventListener('click', () => {
-            if (isTransitioning) return;
-            goToSlide(i + visibleCount);
-        });
-        dotsContainer.appendChild(dot);
-    }
-    const dots = dotsContainer.querySelectorAll('.dot');
-    function updateDots() {
-        let dotIndex = (currentIndex - visibleCount + totalSlides) % totalSlides;
-        dots.forEach((dot, idx) => {
-            dot.classList.toggle('active', idx === dotIndex);
-        });
-    }
-
     // 6. 滑动逻辑
     function goToSlide(targetIdx) {
         if (isTransitioning) return;
@@ -89,7 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
         currentIndex = targetIdx;
         rowInner.style.transition = 'transform 1.5s ease-in-out';
         rowInner.style.transform = `translateX(${-slideWidth * currentIndex}px)`;
-        updateDots();
     }
 
     rowInner.addEventListener('transitionend', () => {
@@ -119,7 +90,4 @@ document.addEventListener('DOMContentLoaded', () => {
         if (document.hidden) return;
         goToSlide(currentIndex + 1);
     }, 5000);
-
-    // 8. 初始化
-    updateDots();
 });
