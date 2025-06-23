@@ -6,16 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
     <title>荏苒签・四载浮光札</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="assets/css/homepage/loading.css">
     <link rel="stylesheet" href="assets/css/homepage/header.css">
     <link rel="stylesheet" href="assets/css/homepage/carousel.css">
     <link rel="stylesheet" href="assets/css/homepage/contain.css">
     <link rel="stylesheet" href="assets/css/homepage/footer.css">
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="assets/css/homepage/background.css">
 </head>
 
 <body>
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
     <!-- loading动画 -->
     <div class="loading">
         <div class="loading-text">
@@ -60,15 +66,14 @@
                 <a href="#carousel-section">扉页</a>
                 <a href="#timeline">时光脉络</a>
                 <a href="#imagery">意象集录</a>
-                <a href="#cityscape">市井长卷</a>
+                <a href="#cityscape">知交影谱</a>
                 <a href="#moments">瞬间纪闻</a>
             </nav>
         </header>
 
         <main id="carousel-section">
             <ul class='slider'>
-                <li class='item' data-id="1"
-                    style="background-image: url('photos/26.jpg')">
+                <li class='item' data-id="1" style="background-image: url('photos/26.jpg')">
                     <div class='content'>
                         <h2 class='title'>"Lossless Youths"</h2>
                         <p class='description'> Lorem ipsum, dolor sit amet consectetur
@@ -86,8 +91,7 @@
                         <button>Read More</button>
                     </div>
                 </li>
-                <li class='item' data-id="3"
-                    style="background-image: url('photos/28.jpg')">
+                <li class='item' data-id="3" style="background-image: url('photos/28.jpg')">
                     <div class='content'>
                         <h2 class='title'>"The Gate Keeper"</h2>
                         <p class='description'> Lorem ipsum, dolor sit amet consectetur
@@ -96,8 +100,7 @@
                         <button>Read More</button>
                     </div>
                 </li>
-                <li class='item' data-id="4"
-                    style="background-image: url('photos/29.jpg')">
+                <li class='item' data-id="4" style="background-image: url('photos/29.jpg')">
                     <div class='content'>
                         <h2 class='title'>"Last Trace Of Us"</h2>
                         <p class='description'>
@@ -108,8 +111,7 @@
                         <button>Read More</button>
                     </div>
                 </li>
-                <li class='item' data-id="5"
-                    style="background-image: url('photos/30.jpg')">
+                <li class='item' data-id="5" style="background-image: url('photos/30.jpg')">
                     <div class='content'>
                         <h2 class='title'>"Urban Decay"</h2>
                         <p class='description'>
@@ -120,8 +122,7 @@
                         <button>Read More</button>
                     </div>
                 </li>
-                <li class='item' data-id="6"
-                    style="background-image: url('photos/31.jpg')">
+                <li class='item' data-id="6" style="background-image: url('photos/31.jpg')">
                     <div class='content'>
                         <h2 class='title'>"The Migration"</h2>
                         <p class='description'> Lorem ipsum, dolor sit amet consectetur
@@ -141,9 +142,7 @@
         <section id="timeline" class="content-category">
             <div class="contain">
                 <h2>时光脉络</h2>
-                <p>
-                    那些被定格的瞬间，串联成我们独一无二的故事。
-                </p>
+                <p> 那些被定格的瞬间，串联成我们独一无二的故事。 </p>
 
                 <div class="row">
                     <div class="row__inner">
@@ -199,8 +198,7 @@
                         </div>
                         <div class="tile">
                             <div class="tile__media">
-                                <img class="tile__img"
-                                    src="photos/6.jpg" alt="" />
+                                <img class="tile__img" src="photos/6.jpg" alt="" />
                             </div>
                             <div class="tile__details">
                                 <div class="tile__title">
@@ -210,8 +208,7 @@
                         </div>
                         <div class="tile">
                             <div class="tile__media">
-                                <img class="tile__img"
-                                    src="photos/7.jpg" alt="" />
+                                <img class="tile__img" src="photos/7.jpg" alt="" />
                             </div>
                             <div class="tile__details">
                                 <div class="tile__title">
@@ -221,8 +218,7 @@
                         </div>
                         <div class="tile">
                             <div class="tile__media">
-                                <img class="tile__img"
-                                    src="photos/8.jpg" alt="" />
+                                <img class="tile__img" src="photos/8.jpg" alt="" />
                             </div>
                             <div class="tile__details">
                                 <div class="tile__title">
@@ -232,8 +228,7 @@
                         </div>
                         <div class="tile">
                             <div class="tile__media">
-                                <img class="tile__img"
-                                    src="photos/9.jpg" alt="" />
+                                <img class="tile__img" src="photos/9.jpg" alt="" />
                             </div>
                             <div class="tile__details">
                                 <div class="tile__title">
@@ -243,8 +238,7 @@
                         </div>
                         <div class="tile">
                             <div class="tile__media">
-                                <img class="tile__img"
-                                    src="photos/10.jpg" alt="" />
+                                <img class="tile__img" src="photos/10.jpg" alt="" />
                             </div>
                             <div class="tile__details">
                                 <div class="tile__title">
@@ -254,8 +248,7 @@
                         </div>
                         <div class="tile">
                             <div class="tile__media">
-                                <img class="tile__img"
-                                    src="photos/11.jpg" alt="" />
+                                <img class="tile__img" src="photos/11.jpg" alt="" />
                             </div>
                             <div class="tile__details">
                                 <div class="tile__title">
@@ -265,8 +258,7 @@
                         </div>
                         <div class="tile">
                             <div class="tile__media">
-                                <img class="tile__img"
-                                    src="photos/12.jpg" alt="" />
+                                <img class="tile__img" src="photos/12.jpg" alt="" />
                             </div>
                             <div class="tile__details">
                                 <div class="tile__title">
@@ -276,8 +268,7 @@
                         </div>
                         <div class="tile">
                             <div class="tile__media">
-                                <img class="tile__img"
-                                    src="photos/13.jpg" alt="" />
+                                <img class="tile__img" src="photos/13.jpg" alt="" />
                             </div>
                             <div class="tile__details">
                                 <div class="tile__title">
@@ -287,8 +278,7 @@
                         </div>
                         <div class="tile">
                             <div class="tile__media">
-                                <img class="tile__img"
-                                    src="photos/14.jpg" alt="" />
+                                <img class="tile__img" src="photos/14.jpg" alt="" />
                             </div>
                             <div class="tile__details">
                                 <div class="tile__title">
@@ -298,8 +288,7 @@
                         </div>
                         <div class="tile">
                             <div class="tile__media">
-                                <img class="tile__img"
-                                    src="photos/15.jpg" alt="" />
+                                <img class="tile__img" src="photos/15.jpg" alt="" />
                             </div>
                             <div class="tile__details">
                                 <div class="tile__title">
@@ -308,6 +297,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="view-more-container">
+                    <button class="view-more-btn">查看更多</button>
                 </div>
                 <nav class='timeline-nav'>
                     <ion-icon class='btn prev' name="arrow-back-outline"></ion-icon>
@@ -319,91 +311,123 @@
 
         <section id="imagery" class="content-category">
             <h2>意象集录</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item"><img src="photos/113.jpg" alt="意象集录 1">
-                    <div class="overlay">
-                        <h3>光与影</h3>
-                        <p>捕捉穿过指尖的阳光。</p>
-                    </div>
-                </div>
-                <div class="gallery-item"><img src="https://via.placeholder.com/400x300.png?text=Photo+6" alt="意象集录 2">
-                    <div class="overlay">
-                        <h3>孤独的树</h3>
-                        <p>在旷野中独自生长，却也自由。</p>
-                    </div>
-                </div>
-                <div class="gallery-item"><img src="https://via.placeholder.com/400x300.png?text=Photo+7" alt="意象集录 3">
-                    <div class="overlay">
-                        <h3>倒影</h3>
-                        <p>水面之下，是另一个平行世界。</p>
-                    </div>
-                </div>
-                <div class="gallery-item"><img src="https://via.placeholder.com/400x300.png?text=Photo+8" alt="意象集录 4">
-                    <div class="overlay">
-                        <h3>几何之美</h3>
-                        <p>建筑与线条构成的和谐乐章。</p>
-                    </div>
-                </div>
+            <p> 按主题收纳记忆碎片，每一辑都是心之所向的注脚。</p>
+            <div id="carousel">
+                <div class="hideLeft"><img src="photos/43.jpg" alt="图片1" /></div>
+                <div class="prevLeftSecond"><img src="photos/21.jpg" alt="图片2" /></div>
+                <div class="prev"><img src="photos/3.jpg" alt="图片3" /></div>
+                <div class="selected"><img src="photos/34.jpg" alt="图片4" /></div>
+                <div class="next"><img src="photos/54.jpg" alt="图片5" /></div>
+                <div class="nextRightSecond"><img src="photos/6.jpg" alt="图片6" /></div>
+                <div class="hideRight"><img src="photos/7.jpg" alt="图片7" /></div>
+            </div>
+            <div class="view-more-container">
+                <button class="view-more-btn">查看更多</button>
             </div>
         </section>
 
         <section id="cityscape" class="content-category">
-            <h2>市井长卷</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item"><img src="photos/57.jpg" alt="市井长卷 1">
-                    <div class="overlay">
-                        <h3>街角咖啡馆</h3>
-                        <p>一个充满故事和香气的地方。</p>
+            <h2>知交影谱</h2>
+            <p> 镜头下的人，是走过生命章节的一页页同行者。</p>
+            <div class="contain">
+                <div class="row">
+                    <div class="row__inner">
+                        <div class="tile">
+                            <div class="tile__media">
+                                <img class="tile__img" src="photos/57.jpg" alt="知交影谱 1" />
+                            </div>
+                            <div class="tile__details">
+                                <div class="tile__title">
+                                    街角咖啡馆
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tile">
+                            <div class="tile__media">
+                                <img class="tile__img" src="photos/65.jpg" alt="知交影谱 2" />
+                            </div>
+                            <div class="tile__details">
+                                <div class="tile__title">
+                                    霓虹灯下
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tile">
+                            <div class="tile__media">
+                                <img class="tile__img" src="photos/IMG_20221020_144400.jpg" alt="知交影谱 3" />
+                            </div>
+                            <div class="tile__details">
+                                <div class="tile__title">
+                                    老市场的喧嚣
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tile">
+                            <div class="tile__media">
+                                <img class="tile__img" src="photos/25.jpg" alt="知交影谱 4" />
+                            </div>
+                            <div class="tile__details">
+                                <div class="tile__title">
+                                    归家的人
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tile">
+                            <div class="tile__media">
+                                <img class="tile__img" src="photos/28.jpg" alt="知交影谱 5" />
+                            </div>
+                            <div class="tile__details">
+                                <div class="tile__title">
+                                    天台的风
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tile">
+                            <div class="tile__media">
+                                <img class="tile__img" src="photos/29.jpg" alt="知交影谱 6" />
+                            </div>
+                            <div class="tile__details">
+                                <div class="tile__title">
+                                    路灯下的等候
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tile">
+                            <div class="tile__media">
+                                <img class="tile__img" src="photos/30.jpg" alt="知交影谱 7" />
+                            </div>
+                            <div class="tile__details">
+                                <div class="tile__title">
+                                    窗边的独白
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="gallery-item"><img src="https://via.placeholder.com/400x300.png?text=Photo+10" alt="市井长卷 2">
-                    <div class="overlay">
-                        <h3>霓虹灯下</h3>
-                        <p>城市的夜晚，比白日更喧嚣。</p>
-                    </div>
-                </div>
-                <div class="gallery-item"><img src="https://via.placeholder.com/400x300.png?text=Photo+11" alt="市井长卷 3">
-                    <div class="overlay">
-                        <h3>老市场的喧嚣</h3>
-                        <p>充满人间烟火气的地方。</p>
-                    </div>
-                </div>
-                <div class="gallery-item"><img src="https://via.placeholder.com/400x300.png?text=Photo+12" alt="市井长卷 4">
-                    <div class="overlay">
-                        <h3>归家的人</h3>
-                        <p>地铁里疲惫但坚定的身影。</p>
-                    </div>
+                <div class="view-more-container">
+                    <button class="view-more-btn">查看更多</button>
                 </div>
             </div>
         </section>
 
         <section id="moments" class="content-category">
             <h2>瞬间纪闻</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item"><img src="https://via.placeholder.com/400x300.png?text=Photo+13" alt="瞬间纪闻 1">
-                    <div class="overlay">
-                        <h3>孩子的笑脸</h3>
-                        <p>纯真无邪，融化一切。</p>
-                    </div>
+            <p> 每一帧的闪光，如星火落在人生坐标上，那是心动画面的定格。</p>
+            <div class="scene">
+                <div class="carousel-3d">
+                    <div class="carousel-cell"><img src="photos/1.jpg" alt="瞬间 1"></div>
+                    <div class="carousel-cell"><img src="photos/2.jpg" alt="瞬间 2"></div>
+                    <div class="carousel-cell"><img src="photos/3.jpg" alt="瞬间 3"></div>
+                    <div class="carousel-cell"><img src="photos/4.jpg" alt="瞬间 4"></div>
+                    <div class="carousel-cell"><img src="photos/5.jpg" alt="瞬间 5"></div>
+                    <div class="carousel-cell"><img src="photos/6.jpg" alt="瞬间 6"></div>
+                    <div class="carousel-cell"><img src="photos/8.jpg" alt="瞬间 7"></div>
+                    <div class="carousel-cell"><img src="photos/9.jpg" alt="瞬间 8"></div>
+                    <div class="carousel-cell"><img src="photos/10.jpg" alt="瞬间 9"></div>
                 </div>
-                <div class="gallery-item"><img src="https://via.placeholder.com/400x300.png?text=Photo+14" alt="瞬间纪闻 2">
-                    <div class="overlay">
-                        <h3>落日余晖</h3>
-                        <p>一天中最温柔的时刻。</p>
-                    </div>
-                </div>
-                <div class="gallery-item"><img src="https://via.placeholder.com/400x300.png?text=Photo+15" alt="瞬间纪闻 3">
-                    <div class="overlay">
-                        <h3>雨中漫步</h3>
-                        <p>撑着伞，听雨滴的歌唱。</p>
-                    </div>
-                </div>
-                <div class="gallery-item"><img src="https://via.placeholder.com/400x300.png?text=Photo+16" alt="瞬间纪闻 4">
-                    <div class="overlay">
-                        <h3>友人的拥抱</h3>
-                        <p>无声的支持，最温暖的力量。</p>
-                    </div>
-                </div>
+            </div>
+            <div class="view-more-container">
+                <button class="view-more-btn">查看更多</button>
             </div>
         </section>
 
@@ -434,6 +458,8 @@
             </div>
         </footer>
     </div>
+
+    <button id="back-to-top" class="fa fa-angle-double-up" title="返回顶部"></button>
 
     <script src="assets/js/homepage/header.js"></script>
     <script src="assets/js/homepage/carousel.js"></script>

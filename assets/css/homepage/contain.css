@@ -82,20 +82,28 @@
     margin: 0;
 }
 
-/* 时间线轮播样式 (Netflix风格) */
-#timeline .contain {
+
+/* 
+---------------------------
+时光脉络：时间线轮播样式 
+---------------------------
+*/
+#timeline .contain,
+#cityscape .contain {
     position: relative;
     width: 100%;
 }
 
 /* 水平滚动容器 */
-#timeline .row {
+#timeline .row,
+#cityscape .row {
     position: relative;
     overflow: hidden; /* 隐藏非当前展示的图片 */
 }
 
 /* 轮播内容容器 */
-#timeline .row__inner {
+#timeline .row__inner,
+#cityscape .row__inner {
     display: flex;
     transition: transform 1.5s ease-in-out;
     font-size: 0;
@@ -105,7 +113,8 @@
 }
 
 /* 时间线项目卡片样式 */
-#timeline .tile {
+#timeline .tile,
+#cityscape .tile {
     flex: none;
     position: relative;
     display: inline-block;
@@ -121,7 +130,8 @@
 }
 
 /* 时间线项目图片样式 - 确保图片填满容器 */
-#timeline .tile__img {
+#timeline .tile__img,
+#cityscape .tile__img {
     width: 100%;
     height: 100%;
     object-fit: fill; /* 保持宽高比，裁剪超出部分 */
@@ -129,7 +139,8 @@
 }
 
 /* 时间线项目详情覆盖层 */
-#timeline .tile__details {
+#timeline .tile__details,
+#cityscape .tile__details {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -144,7 +155,9 @@
 
 /* 播放按钮装饰元素 */
 #timeline .tile__details:after,
-#timeline .tile__details:before {
+#timeline .tile__details:before,
+#cityscape .tile__details:after,
+#cityscape .tile__details:before {
     content: '';
     position: absolute;
     top: 50%;
@@ -153,7 +166,8 @@
 }
 
 /* 播放按钮外圈 */
-#timeline .tile__details:after {
+#timeline .tile__details:after,
+#cityscape .tile__details:after {
     margin-top: -25px;
     margin-left: -25px;
     width: 50px;
@@ -167,7 +181,8 @@
 }
 
 /* 播放按钮图标 */
-#timeline .tile__details:before {
+#timeline .tile__details:before,
+#cityscape .tile__details:before {
     content: '▶';
     left: 0;
     width: 100%;
@@ -180,37 +195,44 @@
 }
 
 /* 悬停时显示详情 */
-#timeline .tile:hover .tile__details {
+#timeline .tile:hover .tile__details,
+#cityscape .tile:hover .tile__details {
     opacity: 1;
 }
 
 /* 标题位置 */
-#timeline .tile__title {
+#timeline .tile__title,
+#cityscape .tile__title {
     position: absolute;
     bottom: 0;
     padding: 10px;
 }
 
 /* 轮播交互效果 */
-#timeline .row__inner:hover {
+#timeline .row__inner:hover,
+#cityscape .row__inner:hover {
     transform: translate3d(-45px, 0, 0);
 }
 
-#timeline .row__inner:hover .tile {
+#timeline .row__inner:hover .tile,
+#cityscape .row__inner:hover .tile {
     opacity: 1;
 }
 
-#timeline .row__inner:hover .tile:hover {
+#timeline .row__inner:hover .tile:hover,
+#cityscape .row__inner:hover .tile:hover {
     transform: scale(1.1);
     opacity: 1;
 }
 
-#timeline .tile:hover ~ .tile {
+#timeline .tile:hover ~ .tile,
+#cityscape .tile:hover ~ .tile {
     transform: translate3d(0, 0, 0);
 }
 
 /* 新增：时间线轮播控件样式 */
-#timeline .timeline-nav {
+#timeline .timeline-nav,
+#cityscape .timeline-nav {
     position: absolute;
     top: 50%;
     left: 0;
@@ -223,7 +245,8 @@
     box-sizing: border-box;
 }
 
-#timeline .timeline-nav .btn {
+#timeline .timeline-nav .btn,
+#cityscape .timeline-nav .btn {
     background: rgba(0,0,0,0.5);
     color: white;
     padding: 0.5rem;
@@ -239,22 +262,318 @@
 }
 
 /* 新增：状态点容器 */
-#timeline .timeline-dots {
+#timeline .timeline-dots,
+#cityscape .timeline-dots {
     text-align: center;
     padding-top: 1.5rem;
 }
 
-#timeline .timeline-dots .dot {
+#timeline .timeline-dots .dot,
+#cityscape .timeline-dots .dot {
     display: inline-block;
-    width: 12px;
-    height: 12px;
-    background-color: #ccc;
-    border-radius: 50%;
+    width: 10px;
+    height: 10px;
     margin: 0 5px;
+    background: #ccc;
+    border-radius: 50%;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
-#timeline .timeline-dots .dot.active {
-    background-color: #555;
+#timeline .timeline-dots .dot.active,
+#cityscape .timeline-dots .dot.active {
+    background: #333;
+}
+
+
+
+
+
+/* 
+---------------------------
+查看更多按钮样式
+---------------------------
+*/
+.view-more-container {
+    text-align: center;
+    padding-top: 2rem; /* 与上方轮播的间距 */
+}
+
+.view-more-btn {
+    padding: 0.8rem 2.5rem;
+    font-size: 1rem;
+    color: #333;
+    background-color: transparent;
+    border: 2px solid #ccc;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.view-more-btn:hover {
+    background-color: #333;
+    color: white;
+    border-color: #333;
+}
+
+
+
+/* 
+---------------------------
+意象集录轮播样式
+---------------------------
+*/
+#imagery {
+    position: relative;
+}
+
+#carousel {
+    position: relative;
+    height: 400px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#carousel div {
+    position: absolute;
+    transition: transform 1s ease-in-out, left 1s ease-in-out, opacity 1s ease-in-out;
+    opacity: 1;
+    display: flex;
+    justify-content: center;
+    top: 50%;
+}
+
+#carousel div img {
+    width: 400px;
+    transition: width 1s;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+#carousel div.hideLeft {
+    left: -20%;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+}
+
+#carousel div.hideRight {
+    left: 120%;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+}
+
+#carousel div.prev {
+    z-index: 5;
+    left: 30%;
+    transform: translate(-50%, -50%);
+}
+
+#carousel div.prev img {
+    width: 300px;
+}
+
+#carousel div.prevLeftSecond {
+    z-index: 4;
+    left: 15%;
+    transform: translate(-50%, -50%);
+    opacity: 0.7;
+}
+
+#carousel div.prevLeftSecond img {
+    width: 200px;
+}
+
+#carousel div.selected {
+    z-index: 10;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#carousel div.next {
+    z-index: 5;
+    left: 70%;
+    transform: translate(-50%, -50%);
+}
+
+#carousel div.next img {
+    width: 300px;
+}
+
+#carousel div.nextRightSecond {
+    z-index: 4;
+    left: 85%;
+    transform: translate(-50%, -50%);
+    opacity: 0.7;
+}
+
+#carousel div.nextRightSecond img {
+    width: 200px;
+}
+
+@media (max-width: 768px) {
+    #carousel {
+        height: 300px;
+    }
+
+    #carousel div img {
+        width: 250px;
+    }
+
+    #carousel div.prev img,
+    #carousel div.next img {
+        width: 200px;
+    }
+
+    #carousel div.prevLeftSecond img,
+    #carousel div.nextRightSecond img,
+    #carousel div.hideLeft img,
+    #carousel div.hideRight img {
+        width: 150px;
+    }
+
+    #carousel div.hideLeft {
+        left: -30%;
+    }
+
+    #carousel div.hideRight {
+        left: 130%;
+    }
+}
+
+/* 
+---------------------------
+瞬间纪闻：3D 轮播样式 
+---------------------------
+*/
+#moments .scene {
+    width: 320px;
+    height: 220px;
+    position: relative;
+    perspective: 1000px;
+    margin: 40px auto;
+}
+
+#moments .carousel-3d {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+}
+
+#moments .carousel-cell {
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    left: 10px;
+    top: 10px;
+    border: 2px solid white;
+    line-height: 116px;
+    font-size: 80px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    background-color: hsla(0, 0%, 0%, 0.8);
+    -webkit-box-reflect: below 5px linear-gradient(transparent, transparent 40%, rgba(255, 255, 255, 0.3));
+    margin-top: 20px;
+}
+
+#moments .carousel-cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#back-to-top {
+    position: fixed;
+    right: 32px;
+    bottom: 32px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #333;
+    color: #fff;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    opacity: 0.7;
+    z-index: 999;
+    transition: opacity 0.3s;
+}
+#back-to-top:hover {
+    opacity: 1;
+}
+
+.fa.fa-angle-double-up {
+  color: rgba(255,255,255,0.85);
+  font-size: 3rem;
+  background: linear-gradient(to top, white, white) no-repeat;
+  -webkit-background-clip: text;
+  background-size: 100% 30px;
+  background-position: bottom;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #333;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  opacity: 0.7;
+  z-index: 999;
+  transition: opacity 0.3s;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  cursor: pointer;
+  padding: 0;
+}
+.fa.fa-angle-double-up:hover {
+  -webkit-background-clip: text;
+  animation: shimmer 0.3s linear 0s 2;
+  opacity: 1;
+}
+@keyframes shimmer {
+  0% {
+    background-position: bottom;
+  }
+  100% {
+    background-position: top;
+  }
+}
+
+#page-wrapper,
+.content-category,
+main,
+section,
+header,
+footer {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+html, body {
+  color: #f3f6fa !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #fff !important;
+}
+
+a, p, span, li, label, th, td, .description, .tile__title {
+  color: #e0e6ef !important;
+}
+
+button, .view-more-btn {
+  color: #fff !important;
+  border-color: #fff !important;
+}
+
+input, textarea, select {
+  color: #222 !important;
+  background: #fff !important;
 }

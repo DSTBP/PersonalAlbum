@@ -1,4 +1,7 @@
-window.onload = function() {
+/**
+ * 加载页功能
+ */
+window.onload = function () {
     const loading = document.querySelector('.loading');
     const pageWrapper = document.getElementById('page-wrapper');
 
@@ -19,6 +22,10 @@ window.onload = function() {
     }
 };
 
+
+/**
+ * 时间脉络轮播功能
+ */
 document.addEventListener('DOMContentLoaded', () => {
     const timeline = document.querySelector('#timeline');
     if (!timeline) return;
@@ -90,4 +97,287 @@ document.addEventListener('DOMContentLoaded', () => {
         if (document.hidden) return;
         goToSlide(currentIndex + 1);
     }, 5000);
+
+    const viewMoreBtn = document.querySelector('.view-more-btn');
+    if (viewMoreBtn) {
+        viewMoreBtn.addEventListener('click', () => {
+            window.location.href = 'http://album.dstbp.net';
+        });
+    }
+});
+
+
+/**
+ * 意象集录轮播功能
+ */
+$(document).ready(function () {
+    const allImages = $("#carousel div");
+    const imageCount = allImages.length;
+    let autoPlayInterval;
+
+    // 初始化自动播放
+    function initAutoPlay() {
+        autoPlayInterval = setInterval(() => moveToSelected("next"), 5000);
+    }
+
+    // 移动到指定图片
+    function moveToSelected(direction) {
+        let selectedIndex;
+
+        // 根据不同的方向或选择器确定目标索引
+        if (direction === "next" || direction === "prev") {
+            selectedIndex = allImages.index($(".selected"));
+
+            if (direction === "next") {
+                selectedIndex = (selectedIndex + 1) % imageCount;
+            } else {
+                selectedIndex = (selectedIndex - 1 + imageCount) % imageCount;
+            }
+        } else {
+            selectedIndex = allImages.index(direction);
+        }
+
+        const selected = allImages.eq(selectedIndex);
+        const nextIndex = (selectedIndex + 1) % imageCount;
+        const prevIndex = (selectedIndex - 1 + imageCount) % imageCount;
+        const nextSecondIndex = (selectedIndex + 2) % imageCount;
+        const prevSecondIndex = (selectedIndex - 2 + imageCount) % imageCount;
+
+        const next = allImages.eq(nextIndex);
+        const prev = allImages.eq(prevIndex);
+        const nextSecond = allImages.eq(nextSecondIndex);
+        const prevSecond = allImages.eq(prevSecondIndex);
+
+        // 清除所有类名
+        allImages.removeClass();
+
+        // 添加新的类名
+        selected.addClass("selected");
+        prev.addClass("prev");
+        next.addClass("next");
+        prevSecond.addClass("prevLeftSecond");
+        nextSecond.addClass("nextRightSecond");
+
+        // 隐藏不需要显示的图片
+        for (let i = 0; i < imageCount; i++) {
+            if (![selectedIndex, prevIndex, nextIndex, prevSecondIndex, nextSecondIndex].includes(i)) {
+                if (i < selectedIndex) {
+                    allImages.eq(i).addClass("hideLeft");
+                } else {
+                    allImages.eq(i).addClass("hideRight");
+                }
+            }
+        }
+    }
+
+    // 键盘导航
+    $(document).keydown(function (e) {
+        if (e.which === 37) moveToSelected("prev"); // 左箭头
+        if (e.which === 39) moveToSelected("next"); // 右箭头
+    });
+
+    // 图片点击切换
+    $("#carousel div").click(function () {
+        moveToSelected($(this));
+        // 重置自动播放计时器
+        clearInterval(autoPlayInterval);
+        initAutoPlay();
+    });
+
+    // "查看更多"按钮点击事件
+    $('#imagery .view-more-btn').on('click', function () {
+        window.location.href = 'http://album.dstbp.net';
+    });
+
+    // 鼠标悬停暂停自动播放
+    $("#carousel").hover(
+        () => clearInterval(autoPlayInterval),
+        () => initAutoPlay()
+    );
+
+    // 初始化
+    initAutoPlay();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const cityscape = document.querySelector('#cityscape');
+    if (!cityscape) return;
+
+    const rowInner = cityscape.querySelector('.row__inner');
+    const tiles = Array.from(cityscape.querySelectorAll('.tile'));
+
+    if (!rowInner || !tiles.length) {
+        console.error('Cityscape carousel elements not found');
+        return;
+    }
+
+    const visibleCount = 7;
+    const totalSlides = tiles.length;
+    const clonesBefore = [];
+    const clonesAfter = [];
+
+    for (let i = 0; i < visibleCount; i++) {
+        clonesBefore.push(tiles[totalSlides - visibleCount + i]?.cloneNode(true) || tiles[i % totalSlides].cloneNode(true));
+        clonesAfter.push(tiles[i % totalSlides].cloneNode(true));
+    }
+    clonesBefore.forEach(clone => rowInner.prepend(clone));
+    clonesAfter.forEach(clone => rowInner.appendChild(clone));
+
+    const allTiles = Array.from(rowInner.querySelectorAll('.tile'));
+    const slideWidth = tiles[0].offsetWidth + parseInt(getComputedStyle(tiles[0]).marginRight, 10);
+    let currentIndex = visibleCount;
+    let isTransitioning = false;
+
+    rowInner.style.transform = `translateX(${-slideWidth * currentIndex}px)`;
+
+    function goToSlide(targetIdx) {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        currentIndex = targetIdx;
+        rowInner.style.transition = 'transform 1.5s ease-in-out';
+        rowInner.style.transform = `translateX(${-slideWidth * currentIndex}px)`;
+    }
+
+    rowInner.addEventListener('transitionend', () => {
+        if (currentIndex < visibleCount) {
+            rowInner.style.transition = 'none';
+            currentIndex = currentIndex + totalSlides;
+            rowInner.style.transform = `translateX(${-slideWidth * currentIndex}px)`;
+            rowInner.offsetHeight;
+            setTimeout(() => {
+                rowInner.style.transition = 'transform 1.5s ease-in-out';
+            }, 20);
+        } else if (currentIndex >= totalSlides + visibleCount) {
+            rowInner.style.transition = 'none';
+            currentIndex = currentIndex - totalSlides;
+            rowInner.style.transform = `translateX(${-slideWidth * currentIndex}px)`;
+            rowInner.offsetHeight;
+            setTimeout(() => {
+                rowInner.style.transition = 'transform 1.5s ease-in-out';
+            }, 20);
+        }
+        isTransitioning = false;
+    });
+
+    // "查看更多"按钮点击事件
+    const viewMoreBtn = cityscape.querySelector('.view-more-btn');
+    if (viewMoreBtn) {
+        viewMoreBtn.addEventListener('click', () => {
+            window.location.href = 'http://album.dstbp.net';
+        });
+    }
+
+    setInterval(() => {
+        if (document.hidden) return;
+        goToSlide(currentIndex - 1);
+    }, 5000);
+});
+
+
+/* 
+---------------------------
+瞬间纪闻：3D 轮播功能
+---------------------------
+*/
+document.addEventListener('DOMContentLoaded', function () {
+    const momentsContainer = document.querySelector('#moments');
+    if (!momentsContainer) return;
+
+    const carousel = momentsContainer.querySelector('.carousel-3d');
+    if (!carousel) return;
+
+    const cells = carousel.querySelectorAll('.carousel-cell');
+    const cellCount = cells.length;
+    if (cellCount === 0) return;
+    
+    const theta = 360 / cellCount;
+    const radius = Math.round((300 / 2) / Math.tan(Math.PI / cellCount));
+
+    let selectedIndex = 0;
+    let rotateY = 0;
+    let startX = 0;
+    let isDragging = false;
+
+    function positionCells() {
+        cells.forEach((cell, i) => {
+            const cellAngle = theta * i;
+            cell.style.transform = `rotateY(${cellAngle}deg) translateZ(-${radius}px)`;
+        });
+    }
+
+    function rotateCarousel() {
+        const angle = theta * selectedIndex * -1;
+        rotateY = angle;
+        carousel.style.transform = `translateZ(-${radius}px) rotateY(${angle}deg)`;
+    }
+    
+    function onPointerDown(event) {
+        isDragging = true;
+        startX = event.pageX || event.touches[0].pageX;
+        carousel.style.transition = 'none';
+        // Prevent default drag behavior like text selection
+        if (event.type === 'mousedown') {
+            event.preventDefault();
+        }
+    }
+
+    function onPointerMove(event) {
+        if (!isDragging) return;
+        const x = event.pageX || event.touches[0].pageX;
+        const dx = x - startX;
+        // The multiplier adjusts drag sensitivity
+        rotateY += dx * 0.25; 
+        carousel.style.transform = `translateZ(-${radius}px) rotateY(${rotateY}deg)`;
+        startX = x;
+    }
+
+    function onPointerUp() {
+        if (!isDragging) return;
+        isDragging = false;
+        carousel.style.transition = 'transform 1s';
+        
+        selectedIndex = Math.round(-rotateY / theta);
+        rotateCarousel();
+    }
+
+    momentsContainer.addEventListener('mousedown', onPointerDown);
+    document.addEventListener('mousemove', onPointerMove);
+    document.addEventListener('mouseup', onPointerUp);
+
+    momentsContainer.addEventListener('touchstart', onPointerDown, { passive: true });
+    document.addEventListener('touchmove', onPointerMove, { passive: true });
+    document.addEventListener('touchend', onPointerUp);
+
+    positionCells();
+    rotateCarousel();
+
+    // "查看更多"按钮点击事件
+    const viewMoreBtn = momentsContainer.querySelector('.view-more-btn');
+    if (viewMoreBtn) {
+        viewMoreBtn.addEventListener('click', () => {
+            window.location.href = 'http://album.dstbp.net';
+        });
+    }
+});
+
+// 返回顶部按钮功能
+// 页面加载时自动回到顶部
+window.scrollTo({ top: 0, behavior: 'auto' });
+document.addEventListener('DOMContentLoaded', function () {
+    const backToTopBtn = document.getElementById('back-to-top');
+    if (!backToTopBtn) return;
+    // 显示/隐藏按钮
+    window.addEventListener('scroll', function () {
+        if (window.scrollY > 200) {
+            backToTopBtn.style.display = 'block';
+        } else {
+            backToTopBtn.style.display = 'none';
+        }
+    });
+    // 初始隐藏
+    backToTopBtn.style.display = 'none';
+    // 点击平滑滚动到顶部
+    backToTopBtn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 });
