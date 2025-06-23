@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const viewMoreBtn = document.querySelector('.view-more-btn');
     if (viewMoreBtn) {
         viewMoreBtn.addEventListener('click', () => {
-            window.location.href = 'http://album.dstbp.net';
+            window.location.href = 'http://album.dstbp.net/timeline.html';
         });
     }
 });
@@ -186,7 +186,7 @@ $(document).ready(function () {
 
     // "查看更多"按钮点击事件
     $('#imagery .view-more-btn').on('click', function () {
-        window.location.href = 'http://album.dstbp.net';
+        window.location.href = 'http://album.dstbp.net/imagery.html';
     });
 
     // 鼠标悬停暂停自动播放
@@ -199,15 +199,19 @@ $(document).ready(function () {
     initAutoPlay();
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const cityscape = document.querySelector('#cityscape');
-    if (!cityscape) return;
 
-    const rowInner = cityscape.querySelector('.row__inner');
-    const tiles = Array.from(cityscape.querySelectorAll('.tile'));
+/**
+ * 知交影谱轮播功能
+ */
+document.addEventListener('DOMContentLoaded', () => {
+    const characters = document.querySelector('#characters');
+    if (!characters) return;
+
+    const rowInner = characters.querySelector('.row__inner');
+    const tiles = Array.from(characters.querySelectorAll('.tile'));
 
     if (!rowInner || !tiles.length) {
-        console.error('Cityscape carousel elements not found');
+        console.error('characters carousel elements not found');
         return;
     }
 
@@ -260,10 +264,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // "查看更多"按钮点击事件
-    const viewMoreBtn = cityscape.querySelector('.view-more-btn');
+    const viewMoreBtn = characters.querySelector('.view-more-btn');
     if (viewMoreBtn) {
         viewMoreBtn.addEventListener('click', () => {
-            window.location.href = 'http://album.dstbp.net';
+            window.location.href = 'http://album.dstbp.net/characters.html';
         });
     }
 
@@ -355,7 +359,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const viewMoreBtn = momentsContainer.querySelector('.view-more-btn');
     if (viewMoreBtn) {
         viewMoreBtn.addEventListener('click', () => {
-            window.location.href = 'http://album.dstbp.net';
+            window.location.href = 'http://album.dstbp.net/moments.html';
         });
     }
 });
