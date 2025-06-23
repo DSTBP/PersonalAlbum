@@ -88,10 +88,14 @@
 时光脉络：时间线轮播样式 
 ---------------------------
 */
+#timeline,
+#timeline .content-category,
 #timeline .contain,
+#cityscape,
+#cityscape .content-category,
 #cityscape .contain {
-    position: relative;
-    width: 100%;
+    background: transparent !important;
+    background-color: transparent !important;
 }
 
 /* 水平滚动容器 */
@@ -298,21 +302,25 @@
     padding-top: 2rem; /* 与上方轮播的间距 */
 }
 
+/* 统一所有查看更多按钮动画和样式 */
 .view-more-btn {
-    padding: 0.8rem 2.5rem;
-    font-size: 1rem;
-    color: #333;
-    background-color: transparent;
-    border: 2px solid #ccc;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  color: #fff !important;
+  border: 2px solid #fff !important;
+  background: transparent !important;
+  font-weight: bold;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  border-radius: 30px;
+  padding: 0.8rem 2.5rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  outline: none;
+  display: inline-block;
 }
-
-.view-more-btn:hover {
-    background-color: #333;
-    color: white;
-    border-color: #333;
+.view-more-btn:hover, .view-more-btn:focus {
+  background: rgba(255,255,255,0.08) !important;
+  color: #aad8ff !important;
+  border-color: #aad8ff !important;
 }
 
 
@@ -547,33 +555,23 @@
 }
 
 #page-wrapper,
-.content-category,
-main,
-section,
-header,
-footer {
-  background: transparent !important;
-  box-shadow: none !important;
-}
-
-html, body {
+#page-wrapper main,
+#page-wrapper section,
+#page-wrapper .content-category,
+#page-wrapper .gallery-item,
+#page-wrapper .tile,
+#page-wrapper .overlay,
+#page-wrapper .tile__details,
+#moments,
+#moments * {
   color: #f3f6fa !important;
 }
 
-h1, h2, h3, h4, h5, h6 {
+/* 更亮的主内容标题样式 */
+.content-category h2,
+#cityscape .tile__title,
+#timeline .tile__title,
+#moments h2 {
   color: #fff !important;
-}
-
-a, p, span, li, label, th, td, .description, .tile__title {
-  color: #e0e6ef !important;
-}
-
-button, .view-more-btn {
-  color: #fff !important;
-  border-color: #fff !important;
-}
-
-input, textarea, select {
-  color: #222 !important;
-  background: #fff !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.25);
 }
