@@ -8,6 +8,10 @@
 .content-category {
     padding: 4rem 2rem;
     text-align: center;
+    background: linear-gradient(180deg, rgba(30,34,45,0.92) 60%, rgba(30,34,45,0.7) 100%);
+    box-shadow: 0 8px 32px 0 rgba(31,38,135,0.10);
+    border-radius: 18px;
+    margin-bottom: 0;
 }
 
 /* 奇偶分类使用不同背景色，增强视觉区分度 */
@@ -574,4 +578,21 @@
 #moments h2 {
   color: #fff !important;
   text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+.section-transition {
+  width: 100%;
+  height: 60px;
+  background: linear-gradient(90deg, rgba(30,34,45,0) 0%, rgba(170,216,255,0.18) 50%, rgba(30,34,45,0) 100%);
+  margin: 0 auto;
+  border: none;
+}
+
+/* 让每个section底部有更自然的阴影过渡 */
+.content-category + .section-transition {
+  margin-top: -2rem;
+  margin-bottom: 2rem;
+  height: 80px;
+  background: linear-gradient(180deg, rgba(30,34,45,0.12) 0%, rgba(30,34,45,0.38) 100%);
+  border-radius: 0 0 18px 18px;
 }
