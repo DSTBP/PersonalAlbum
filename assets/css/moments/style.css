@@ -120,3 +120,108 @@
               transform: rotateY(0deg);
     }
   }
+
+  /* 六边形蜂巢图片布局样式，全部加.hex-前缀，避免与原有样式冲突 */
+  .hex-IMG {
+    width: 100%;
+    display: block;
+  }
+  .hex-item .hex-IMG {
+    visibility: hidden;
+  }
+  .hex-container {
+    margin: 3rem auto;
+    padding: 1rem 0 2.4rem;
+    text-align: center;
+    max-width: 50rem;
+  }
+  .hex-item {
+    width: 10rem;
+    height: 10rem;
+    position: relative;
+    display: inline-block;
+    margin: 0.4rem;
+  }
+  .hex-item::before {
+    content: "";
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    background-color: rgba(185, 183, 183, 0.5);
+    clip-path: polygon(50% 0, 93.3% 25%, 93.3% 75%, 50% 100%, 6.7% 75%, 6.7% 25%);
+    transform: scale(1.077);
+    transition: transform 0.3s;
+  }
+  .hex-item:hover::before {
+    transform: scale(1.154);
+  }
+  .hex-item a {
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    background-size: cover;
+    background-position: center;
+    clip-path: polygon(50% 0, 93.3% 25%, 93.3% 75%, 50% 100%, 6.7% 75%, 6.7% 25%);
+  }
+
+  @supports (display: grid) {
+    @media (min-width: 17rem) {
+      .hex-container {
+        display: grid;
+        max-width: 15rem;
+        grid-template-columns: repeat(3, 5rem);
+      }
+      .hex-item {
+        grid-column: span 2;
+        margin: 0;
+        margin-bottom: -1.4rem;
+      }
+      .hex-item:nth-child(even) {grid-column: 2}
+    }
+    @media (min-width: 22rem) {
+      .hex-container {
+        max-width: 20rem;
+        grid-template-columns: repeat(4, 5rem);
+      }
+      .hex-item:nth-child(3n+1) {grid-column: 1}
+      .hex-item:nth-child(3n+2) {grid-column: 3}
+      .hex-item:nth-child(3n+0) {grid-column: 2}
+    }
+    @media (min-width: 32rem) {
+      .hex-container {
+        max-width: 30rem;
+        grid-template-columns: repeat(6, 5rem);
+      }
+      .hex-item:nth-child(5n+1) {grid-column: 1}
+      .hex-item:nth-child(5n+2) {grid-column: 3}
+      .hex-item:nth-child(5n+3) {grid-column: 5}
+      .hex-item:nth-child(5n+4) {grid-column: 2}
+      .hex-item:nth-child(5n+0) {grid-column: 4}
+    }
+    @media (min-width: 42rem) {
+      .hex-container {
+        max-width: 40rem;
+        grid-template-columns: repeat(8, 5rem);
+      }
+      .hex-item:nth-child(7n+1) {grid-column: 1}
+      .hex-item:nth-child(7n+2) {grid-column: 3}
+      .hex-item:nth-child(7n+3) {grid-column: 5}
+      .hex-item:nth-child(7n+4) {grid-column: 7}
+      .hex-item:nth-child(7n+5) {grid-column: 2}
+      .hex-item:nth-child(7n+6) {grid-column: 4}
+      .hex-item:nth-child(7n+0) {grid-column: 6}
+    }
+    @media (min-width: 54rem) {
+      .hex-container {
+        max-width: 50rem;
+        grid-template-columns: repeat(10, 5rem);
+      }
+      .hex-item:nth-child(9n+1) {grid-column: 1}
+      .hex-item:nth-child(9n+2) {grid-column: 3}
+      .hex-item:nth-child(9n+3) {grid-column: 5}
+      .hex-item:nth-child(9n+4) {grid-column: 7}
+      .hex-item:nth-child(9n+5) {grid-column: 9}
+      .hex-item:nth-child(9n+6) {grid-column: 2}
+      .hex-item:nth-child(9n+7) {grid-column: 4}
+      .hex-item:nth-child(9n+8) {grid-column: 6}
+      .hex-item:nth-child(9n+0) {grid-column: 8}
+    }
+  }

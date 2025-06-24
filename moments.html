@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D TikTok 旋转木马</title>
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+    <title>瞬间纪闻</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/loading.css">
+    <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="assets/css/moments/style.css">
+    <link rel="stylesheet" href="assets/css/homepage/background.css">
     <style>
         /* 基础样式重置 */
         * {
@@ -20,12 +25,34 @@
             background-color: #0f0f0f;
             color: #fff;
             overflow-x: hidden;
+            overflow-y: auto;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        .main-flex {
+            display: flex;
+            flex-direction: row;
+            width: 100vw;
+            flex: 1;
+        }
+        
+        .left-panel {
+            width: 50vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .right-panel {
+            width: 50vw;
         }
         
         .container {
-            max-width: 100%;
-            min-height: 100vh;
+            width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -52,98 +79,152 @@
             background: linear-gradient(90deg, #ff3e6c, #ff9966);
         }
         
-        /* 音乐控制样式 */
-        .music-control {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: rgba(0, 0, 0, 0.7);
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 100;
-            box-shadow: 0 0 20px rgba(255, 62, 108, 0.5);
-            transition: all 0.3s ease;
-        }
-        
-        .music-control:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 30px rgba(255, 62, 108, 0.7);
-        }
-        
-        .music-icon {
-            font-size: 1.5rem;
-            color: #ff3e6c;
-        }
-        
-        .music-control.active .music-icon {
-            animation: spin 2s linear infinite;
-        }
-        
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
         /* 响应式调整 */
         @media (max-width: 768px) {
+            .main-flex {
+                flex-direction: column;
+            }
+            .left-panel, .right-panel {
+                width: 100vw;
+            }
             .section-title {
                 font-size: 1.5rem;
-            }
-            
-            .music-control {
-                width: 50px;
-                height: 50px;
-                bottom: 20px;
-                right: 20px;
-            }
-            
-            .music-icon {
-                font-size: 1.2rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h2 class="section-title">3D 时刻旋转木马</h2>
-        
-        <div id="drag-container" class="relative">
-            <div id="ground" class="absolute bottom-0 w-full h-20 bg-gradient-to-t from-gray-800 to-transparent"></div>
-            
-            <div id="spin-container" class="relative w-full max-w-3xl h-[500px]">
-                <!-- 图片和视频内容 -->
-                <img src="https://images.pexels.com/photos/206395/pexels-photo-206395.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="精彩时刻">
-                <img src="https://images.pexels.com/photos/1391498/pexels-photo-1391498.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="精彩时刻">
-                <img src="https://images.pexels.com/photos/1382731/pexels-photo-1382731.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="精彩时刻">
-                <img src="https://images.pexels.com/photos/1758144/pexels-photo-1758144.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="精彩时刻">
-                <img src="https://images.pexels.com/photos/1382734/pexels-photo-1382734.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="精彩时刻">
-                <img src="https://images.pexels.com/photos/1462636/pexels-photo-1462636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="精彩时刻">
-                
-                <!-- 带链接的图片 -->
-                <a target="_blank" href="https://images.pexels.com/photos/139829/pexels-photo-139829.jpeg">
-                    <img src="https://images.pexels.com/photos/139829/pexels-photo-139829.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="精彩时刻">
-                </a>
-                
-                <!-- 视频 -->
-                <video controls autoplay loop class="max-w-full h-auto">
-                    <source src="https://player.vimeo.com/external/322244668.sd.mp4?s=338c48ac2dfcb1d4c0689968b5baf94eee6ca0c1&profile_id=165&oauth2_token_id=57447761" type="video/mp4">
-                </video>
-                
-                <!-- 中心文本 -->
-                <p class="absolute inset-0 flex items-center justify-center text-2xl font-bold text-pink-500">3D TikTok 旋转木马</p>
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+    <div class="loader">
+        <ul class="hexagon-container">
+            <li class="hexagon hex_1"></li>
+            <li class="hexagon hex_2"></li>
+            <li class="hexagon hex_3"></li>
+            <li class="hexagon hex_4"></li>
+            <li class="hexagon hex_5"></li>
+            <li class="hexagon hex_6"></li>
+            <li class="hexagon hex_7"></li>
+        </ul>
+    </div>
+    <div id="page-wrapper" style="visibility: hidden; opacity: 0; display: flex; flex-direction: column; min-height: 100vh; flex: 1;">
+        <header>
+            <h1 style="font-family: 'SimSun', '宋体', serif;">瞬间纪闻</h1>
+            <nav>
+                <a href="https://album.dstbp.net">扉页</a>
+                <a href="https://album.dstbp.net/timeline.html">时光脉络</a>
+                <a href="https://album.dstbp.net/imagery.html">意象集录</a>
+                <a href="https://album.dstbp.net/characters.html">知交影谱</a>
+                <a href="https://album.dstbp.net/moments.html">瞬间纪闻</a>
+            </nav>
+        </header>
+        <div class="main-flex">
+            <div class="left-panel">
+                <div class="container">
+                    <div id="drag-container" class="relative">
+                        <div id="ground" class="absolute bottom-0 w-full h-20 bg-gradient-to-t from-gray-800 to-transparent"></div>
+                        
+                        <div id="spin-container" class="relative w-full max-w-8xl h-[1050px]">
+                            <!-- 图片和视频内容 -->
+                            <img src="https://images.pexels.com/photos/206395/pexels-photo-206395.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="精彩时刻">
+                            <img src="https://images.pexels.com/photos/1391498/pexels-photo-1391498.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="精彩时刻">
+                            <img src="https://images.pexels.com/photos/1382731/pexels-photo-1382731.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="精彩时刻">
+                            <img src="https://images.pexels.com/photos/1758144/pexels-photo-1758144.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="精彩时刻">
+                            <img src="https://images.pexels.com/photos/1382734/pexels-photo-1382734.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="精彩时刻">
+                            <img src="https://images.pexels.com/photos/1462636/pexels-photo-1462636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="精彩时刻">
+                            
+                            <!-- 带链接的图片 -->
+                            <a target="_blank" href="https://images.pexels.com/photos/139829/pexels-photo-139829.jpeg">
+                                <img src="https://images.pexels.com/photos/139829/pexels-photo-139829.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="精彩时刻">
+                            </a>
+                            
+                            <!-- 视频 -->
+                            <video controls autoplay loop class="max-w-full h-auto">
+                                <source src="https://player.vimeo.com/external/322244668.sd.mp4?s=338c48ac2dfcb1d4c0689968b5baf94eee6ca0c1&profile_id=165&oauth2_token_id=57447761" type="video/mp4">
+                            </video>
+                            
+                            <!-- 中心文本 -->
+                            <p class="absolute inset-0 flex items-center justify-center text-2xl font-bold text-pink-500">瞬间纪闻</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right-panel">
+                <ul class="hex-container">
+                    <li class="hex-item"><a href="https://res.cloudinary.com/rafiozoo/image/upload/v1519246811/misc/bees/bees-01.jpg" title="01"><img class="hex-IMG" src="https://res.cloudinary.com/rafiozoo/image/upload/v1519246811/misc/bees/bees-01.jpg" alt="01"></a></li>
+                    <li class="hex-item"><a href="#0" title="02"><img class="hex-IMG" src="https://res.cloudinary.com/rafiozoo/image/upload/v1519246811/misc/bees/bees-02.jpg" alt="02"></a></li>
+                    <li class="hex-item"><a href="#0" title="03"><img class="hex-IMG" src="https://res.cloudinary.com/rafiozoo/image/upload/v1519246811/misc/bees/bees-03.jpg" alt="03"></a></li>
+                    <li class="hex-item"><a href="#0" title="04"><img class="hex-IMG" src="https://res.cloudinary.com/rafiozoo/image/upload/v1519246811/misc/bees/bees-04.jpg" alt="04"></a></li>
+                    <li class="hex-item"><a href="#0" title="05"><img class="hex-IMG" src="https://res.cloudinary.com/rafiozoo/image/upload/v1519246811/misc/bees/bees-05.jpg" alt="05"></a></li>
+                    <li class="hex-item"><a href="#0" title="06"><img class="hex-IMG" src="https://res.cloudinary.com/rafiozoo/image/upload/v1519246811/misc/bees/bees-06.jpg" alt="06"></a></li>
+                    <li class="hex-item"><a href="#0" title="07"><img class="hex-IMG" src="https://res.cloudinary.com/rafiozoo/image/upload/v1519246811/misc/bees/bees-07.jpg" alt="07"></a></li>
+                    <li class="hex-item"><a href="#0" title="08"><img class="hex-IMG" src="https://res.cloudinary.com/rafiozoo/image/upload/v1519246811/misc/bees/bees-08.jpg" alt="08"></a></li>
+                    <li class="hex-item"><a href="#0" title="09"><img class="hex-IMG" src="https://res.cloudinary.com/rafiozoo/image/upload/v1519246811/misc/bees/bees-09.jpg" alt="09"></a></li>
+                    <li class="hex-item"><a href="#0" title="10"><img class="hex-IMG" src="https://res.cloudinary.com/rafiozoo/image/upload/v1519246811/misc/bees/bees-10.jpg" alt="10"></a></li>
+                    <li class="hex-item"><a href="#0" title="11"><img class="hex-IMG" src="https://res.cloudinary.com/rafiozoo/image/upload/v1519246811/misc/bees/bees-11.jpg" alt="11"></a></li>
+                    <li class="hex-item"><a href="#0" title="12"><img class="hex-IMG" src="https://res.cloudinary.com/rafiozoo/image/upload/v1519246811/misc/bees/bees-12.jpg" alt="12"></a></li>
+                    <li class="hex-item"><a href="#0" title="13"><img class="hex-IMG" src="https://res.cloudinary.com/rafiozoo/image/upload/v1519246811/misc/bees/bees-13.jpg" alt="13"></a></li>
+                    <li class="hex-item"><a href="#0" title="14"><img class="hex-IMG" src="https://res.cloudinary.com/rafiozoo/image/upload/v1519246811/misc/bees/bees-14.jpg" alt="14"></a></li>
+                    <li class="hex-item"><a href="#0" title="15"><img class="hex-IMG" src="https://res.cloudinary.com/rafiozoo/image/upload/v1519246811/misc/bees/bees-15.jpg" alt="15"></a></li>
+                    <li class="hex-item"><a href="#0" title="16"><img class="hex-IMG" src="https://res.cloudinary.com/rafiozoo/image/upload/v1519246811/misc/bees/bees-16.jpg" alt="16"></a></li>
+                    <li class="hex-item"><a href="#0" title="17"><img class="hex-IMG" src="https://res.cloudinary.com/rafiozoo/image/upload/v1519246811/misc/bees/bees-01.jpg" alt="17"></a></li>
+                    <li class="hex-item"><a href="#0" title="18"><img class="hex-IMG" src="https://res.cloudinary.com/rafiozoo/image/upload/v1519246811/misc/bees/bees-02.jpg" alt="18"></a></li>
+                    <li class="hex-item"><a href="#0" title="19"><img class="hex-IMG" src="https://res.cloudinary.com/rafiozoo/image/upload/v1519246811/misc/bees/bees-03.jpg" alt="19"></a></li>
+                    <li class="hex-item"><a href="#0" title="20"><img class="hex-IMG" src="https://res.cloudinary.com/rafiozoo/image/upload/v1519246811/misc/bees/bees-04.jpg" alt="20"></a></li>
+                    <li class="hex-item"><a href="#0" title="21"><img class="hex-IMG" src="https://res.cloudinary.com/rafiozoo/image/upload/v1519246811/misc/bees/bees-05.jpg" alt="21"></a></li>
+                    <li class="hex-item"><a href="#0" title="22"><img class="hex-IMG" src="https://res.cloudinary.com/rafiozoo/image/upload/v1519246811/misc/bees/bees-06.jpg" alt="22"></a></li>
+                    <li class="hex-item"><a href="#0" title="23"><img class="hex-IMG" src="https://res.cloudinary.com/rafiozoo/image/upload/v1519246811/misc/bees/bees-07.jpg" alt="23"></a></li>
+                    <li class="hex-item"><a href="#0" title="24"><img class="hex-IMG" src="https://res.cloudinary.com/rafiozoo/image/upload/v1519246811/misc/bees/bees-08.jpg" alt="24"></a></li>
+                    <li class="hex-item"><a href="#0" title="25"><img class="hex-IMG" src="https://res.cloudinary.com/rafiozoo/image/upload/v1519246811/misc/bees/bees-09.jpg" alt="25"></a></li>
+                    <li class="hex-item"><a href="#0" title="26"><img class="hex-IMG" src="https://res.cloudinary.com/rafiozoo/image/upload/v1519246811/misc/bees/bees-10.jpg" alt="26"></a></li>
+                    <li class="hex-item"><a href="#0" title="27"><img class="hex-IMG" src="https://res.cloudinary.com/rafiozoo/image/upload/v1519246811/misc/bees/bees-11.jpg" alt="27"></a></li>
+                    <li class="hex-item"><a href="#0" title="28"><img class="hex-IMG" src="https://res.cloudinary.com/rafiozoo/image/upload/v1519246811/misc/bees/bees-12.jpg" alt="28"></a></li>
+                    <li class="hex-item"><a href="#0" title="29"><img class="hex-IMG" src="https://res.cloudinary.com/rafiozoo/image/upload/v1519246811/misc/bees/bees-13.jpg" alt="29"></a></li>
+                    <li class="hex-item"><a href="#0" title="30"><img class="hex-IMG" src="https://res.cloudinary.com/rafiozoo/image/upload/v1519246811/misc/bees/bees-14.jpg" alt="30"></a></li>
+                    <li class="hex-item"><a href="#0" title="31"><img class="hex-IMG" src="https://res.cloudinary.com/rafiozoo/image/upload/v1519246811/misc/bees/bees-14.jpg" alt="31"></a></li>
+                </ul>
             </div>
         </div>
+        <footer>
+            <div class="footer-content">
+                <p> &copy; 2025 荏苒签・四载浮光札. All Rights Reserved. </p>
+                <div class="social-icons" style="display: flex; gap: 15px;">
+                    <a href="https://www.dstbp.net" class="social-icon" style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background-color: #b9b5b5; color: #333; text-decoration: none; transition: background-color 0.3s;">
+                        <i class="fa fa-home"></i>
+                    </a>
+                    <a href="mailto:dstbp@qq.com" class="social-icon" style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background-color: #b9b5b5; color: #333; text-decoration: none; transition: background-color 0.3s;">
+                        <i class="fa fa-envelope"></i>
+                    </a>
+                    <a href="https://github.com/DSTBP" class="social-icon" style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background-color: #b9b5b5; color: #333; text-decoration: none; transition: background-color 0.3s;">
+                        <i class="fa fa-github"></i>
+                    </a>
+                </div>            
+            </div>
+        </footer>
+        <script src="assets/js/moments/script.js"></script>
     </div>
-    
-    <div id="music-container" class="music-control">
-    </div>
-    
+    <script>
+        window.addEventListener('load', function() {
+            const loader = document.querySelector('.loader');
+            const pageWrapper = document.getElementById('page-wrapper');
 
-    <script src="assets/js/moments/script.js"></script>
+            if (loader) {
+                loader.style.transition = 'opacity 0.5s ease';
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 500);
+            }
+
+            if (pageWrapper) {
+                setTimeout(() => {
+                    pageWrapper.style.visibility = 'visible';
+                    pageWrapper.style.transition = 'opacity 1s ease';
+                    pageWrapper.style.opacity = '1';
+                }, 200);
+            }
+        });
+    </script>
 </body>
 </html>
