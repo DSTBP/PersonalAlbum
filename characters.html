@@ -1,81 +1,153 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Team</title>
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+    <title>知交影谱</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/loading.css">
+    <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/background.css">
     <link rel="stylesheet" href="assets/css/characters/style.css">
     <style>
-        /* 基础样式重置 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-        
         body {
-            background-color: #f5f7fa;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
+            background-color: #0f0f0f;
+            color: #fff;
+            overflow-x: hidden;
+            overflow-y: auto;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
-        
-        .section-title {
-            text-align: center;
-            margin: 30px 0;
-            color: #333;
+        #page-wrapper > main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 </head>
 <body>
-    <div class="team-container">
-        <div class="carousel-container">
-            <button class="nav-arrow left">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <div class="carousel-track">
-                <div class="card" data-index="0">
-                    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=3687&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Team Member 1">
-                </div>
-                <div class="card" data-index="1">
-                    <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Team Member 2">
-                </div>
-                <div class="card" data-index="2">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmVzc2lvbmFsJTIwcGVvcGxlfGVufDB8fDB8fHww" alt="Team Member 3">
-                </div>
-                <div class="card" data-index="3">
-                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cHJvZmVzc2lvbmFsJTIwcGVvcGxlfGVufDB8fDB8fHww" alt="Team Member 4">
-                </div>
-                <div class="card" data-index="4">
-                    <img src="https://images.unsplash.com/photo-1655249481446-25d575f1c054?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fHByb2Zlc3Npb25hbCUyMHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D" alt="Team Member 5">
-                </div>
-                <div class="card" data-index="5">
-                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=3687&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Team Member 6">
-                </div>
-            </div>
-            <button class="nav-arrow right">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-        </div>
-
-        <div class="member-info">
-            <h2 class="member-name">David Kim</h2>
-            <p class="member-role">Founder</p>
-            <p class="member-bio">David is the founder and CEO of our company, with over 15 years of experience in the tech industry.</p>
-        </div>
-
-        <div class="dots">
-            <div class="dot active" data-index="0"></div>
-            <div class="dot" data-index="1"></div>
-            <div class="dot" data-index="2"></div>
-            <div class="dot" data-index="3"></div>
-            <div class="dot" data-index="4"></div>
-            <div class="dot" data-index="5"></div>
-        </div>
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+    <div class="loader">
+        <ul class="hexagon-container">
+            <li class="hexagon hex_1"></li>
+            <li class="hexagon hex_2"></li>
+            <li class="hexagon hex_3"></li>
+            <li class="hexagon hex_4"></li>
+            <li class="hexagon hex_5"></li>
+            <li class="hexagon hex_6"></li>
+            <li class="hexagon hex_7"></li>
+        </ul>
     </div>
 
+    <div id="page-wrapper" style="visibility: hidden; opacity: 0; display: flex; flex-direction: column; min-height: 100vh; flex: 1;">
+        <header>
+            <h1 style="font-family: 'SimSun', '宋体', serif;">知交影谱</h1>
+            <nav>
+                <a href="https://album.dstbp.net">扉页</a>
+                <a href="https://album.dstbp.net/timeline.html">时光脉络</a>
+                <a href="https://album.dstbp.net/imagery.html">意象集录</a>
+                <a href="https://album.dstbp.net/characters.html">知交影谱</a>
+                <a href="https://album.dstbp.net/moments.html">瞬间纪闻</a>
+            </nav>
+        </header>
+
+        <main>
+            <div class="team-container">
+                <div class="carousel-container">
+                    <button class="nav-arrow left">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="carousel-track">
+                        <div class="card" data-index="0">
+                            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=3687&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Team Member 1">
+                        </div>
+                        <div class="card" data-index="1">
+                            <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Team Member 2">
+                        </div>
+                        <div class="card" data-index="2">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmVzc2lvbmFsJTIwcGVvcGxlfGVufDB8fDB8fHww" alt="Team Member 3">
+                        </div>
+                        <div class="card" data-index="3">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cHJvZmVzc2lvbmFsJTIwcGVvcGxlfGVufDB8fDB8fHww" alt="Team Member 4">
+                        </div>
+                        <div class="card" data-index="4">
+                            <img src="https://images.unsplash.com/photo-1655249481446-25d575f1c054?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fHByb2Zlc3Npb25hbCUyMHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D" alt="Team Member 5">
+                        </div>
+                        <div class="card" data-index="5">
+                            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=3687&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Team Member 6">
+                        </div>
+                        <div class="card" data-index="6">
+                            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=3687&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Team Member 6">
+                        </div>
+                        <div class="card" data-index="7">
+                            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=3687&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Team Member 6">
+                        </div>
+                    </div>
+                    <button class="nav-arrow right">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <div class="member-info">
+                    <h2 class="member-name">David Kim</h2>
+                    <p class="member-role">Founder</p>
+                    <p class="member-bio">David is the founder and CEO of our company, with over 15 years of experience in the tech industry.</p>
+                </div>
+
+                <div class="dots">
+                    <!-- Dots will be generated dynamically by script.js -->
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <p> &copy; 2025 荏苒签・四载浮光札. All Rights Reserved. </p>
+                <div class="social-icons" style="display: flex; gap: 15px;">
+                    <a href="https://www.dstbp.net" class="social-icon" style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background-color: #b9b5b5; color: #333; text-decoration: none; transition: background-color 0.3s;">
+                        <i class="fa fa-home"></i>
+                    </a>
+                    <a href="mailto:dstbp@qq.com" class="social-icon" style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background-color: #b9b5b5; color: #333; text-decoration: none; transition: background-color 0.3s;">
+                        <i class="fa fa-envelope"></i>
+                    </a>
+                    <a href="https://github.com/DSTBP" class="social-icon" style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background-color: #b9b5b5; color: #333; text-decoration: none; transition: background-color 0.3s;">
+                        <i class="fa fa-github"></i>
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
     <script src="assets/js/characters/script.js"></script>
+    <script>
+        window.addEventListener('load', function() {
+            const loader = document.querySelector('.loader');
+            const pageWrapper = document.getElementById('page-wrapper');
+
+            if (loader) {
+                loader.style.transition = 'opacity 0.5s ease';
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 500);
+            }
+
+            if (pageWrapper) {
+                setTimeout(() => {
+                    pageWrapper.style.visibility = 'visible';
+                    pageWrapper.style.transition = 'opacity 1s ease';
+                    pageWrapper.style.opacity = '1';
+                }, 200);
+            }
+        });
+    </script>
 </body>
 </html>

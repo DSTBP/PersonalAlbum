@@ -1,13 +1,26 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
 footer {
+    width: 100%;
     background-color: #333;
     color: #b3b3b3;
     position: relative;
 }
 
+#page-wrapper {
+    width: 100%;
+}
+
 .footer-content {
     display: flex;
     flex-wrap: wrap;
+    box-sizing: border-box;
     padding: 2rem 4rem;
+    align-items: center;
+    width: 100%;
     justify-content: space-between;
 }
 

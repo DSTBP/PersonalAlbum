@@ -8,6 +8,19 @@ const teamMembers = [
 ];
 
 const cards = document.querySelectorAll(".card");
+const dotsContainer = document.querySelector(".dots");
+
+// 动态生成状态点
+if (dotsContainer) {
+	dotsContainer.innerHTML = '';
+	for (let i = 0; i < cards.length; i++) {
+		const dot = document.createElement('div');
+		dot.classList.add('dot');
+		dot.dataset.index = i;
+		dotsContainer.appendChild(dot);
+	}
+}
+
 const dots = document.querySelectorAll(".dot");
 const memberName = document.querySelector(".member-name");
 const memberRole = document.querySelector(".member-role");
@@ -122,3 +135,24 @@ function handleSwipe() {
 }
 
 updateCarousel(0);
+
+// --- 自动轮播 ---
+let autoPlayInterval;
+const teamContainer = document.querySelector('.team-container');
+
+function startAutoPlay() {
+	autoPlayInterval = setInterval(() => {
+		updateCarousel(currentIndex + 1);
+	}, 3000); // 每3秒切换一次
+}
+
+function stopAutoPlay() {
+	clearInterval(autoPlayInterval);
+}
+
+if (teamContainer) {
+	teamContainer.addEventListener('mouseenter', stopAutoPlay);
+	teamContainer.addEventListener('mouseleave', startAutoPlay);
+}
+
+startAutoPlay(); // 页面加载后开始自动轮播
