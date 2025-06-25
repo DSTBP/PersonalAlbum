@@ -98,15 +98,17 @@
     <div id="stars2"></div>
     <div id="stars3"></div>
     <div class="loader">
-        <ul class="hexagon-container">
-            <li class="hexagon hex_1"></li>
-            <li class="hexagon hex_2"></li>
-            <li class="hexagon hex_3"></li>
-            <li class="hexagon hex_4"></li>
-            <li class="hexagon hex_5"></li>
-            <li class="hexagon hex_6"></li>
-            <li class="hexagon hex_7"></li>
-        </ul>
+        <div class="loader-content">
+            <ul class="hexagon-container">
+                <li class="hexagon hex_1"></li>
+                <li class="hexagon hex_2"></li>
+                <li class="hexagon hex_3"></li>
+                <li class="hexagon hex_4"></li>
+                <li class="hexagon hex_5"></li>
+                <li class="hexagon hex_6"></li>
+                <li class="hexagon hex_7"></li>
+            </ul>
+        </div>
     </div>
     <div id="page-wrapper" style="visibility: hidden; opacity: 0; display: flex; flex-direction: column; min-height: 100vh; flex: 1;">
         <header>
@@ -210,11 +212,12 @@
             const pageWrapper = document.getElementById('page-wrapper');
 
             if (loader) {
-                loader.style.transition = 'opacity 0.5s ease';
-                loader.style.opacity = '0';
                 setTimeout(() => {
-                    loader.style.display = 'none';
-                }, 500);
+                    loader.classList.add('hidden');
+                    setTimeout(() => {
+                        loader.style.display = 'none';
+                    }, 500);
+                }, 1000);
             }
 
             if (pageWrapper) {

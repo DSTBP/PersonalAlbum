@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+    <title>时光脉络</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pathway+Gothic+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/loading.css">
+    <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/timeline/style.css">
+    <link rel="stylesheet" href="assets/css/background.css">
+    <link rel="stylesheet" href="assets/css/timeline/style.css">
+    <link rel="stylesheet" href="assets/css/timeline/timeline.css">
+    <style>
+        /* 基础样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0f0f0f;
+            color: #fff;
+            overflow-x: hidden;
+            overflow-y: auto;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            margin-top: 80px; /* 为固定header留出空间 */
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            color: #ff3e6c;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff3e6c, #ff9966);
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+    <div class="loader">
+        <div class="loader-content">
+            <ul class="hexagon-container">
+                <li class="hexagon hex_1"></li>
+                <li class="hexagon hex_2"></li>
+                <li class="hexagon hex_3"></li>
+                <li class="hexagon hex_4"></li>
+                <li class="hexagon hex_5"></li>
+                <li class="hexagon hex_6"></li>
+                <li class="hexagon hex_7"></li>
+            </ul>
+        </div>
+    </div>
+    <div id="page-wrapper" style="visibility: hidden; opacity: 0; display: flex; flex-direction: column; flex: 1;">
+        <header>
+            <h1 style="font-family: 'SimSun', '宋体', serif;">时光脉络</h1>
+            <nav>
+                <a href="https://album.dstbp.net">扉页</a>
+                <a href="https://album.dstbp.net/timeline.html">时光脉络</a>
+                <a href="https://album.dstbp.net/imagery.html">意象集录</a>
+                <a href="https://album.dstbp.net/characters.html">知交影谱</a>
+                <a href="https://album.dstbp.net/moments.html">瞬间纪闻</a>
+            </nav>
+        </header>
+        
+        <!-- 滑块容器区域 -->
+        <main class="sliders-container">
+            <!-- 滑块内容将通过 JavaScript 动态注入 -->
+            
+            <!-- 滑块分页导航 -->
+            <ul class="pagination">
+                <li class="pagination__item"><a class="pagination__button"></a></li>
+                <li class="pagination__item"><a class="pagination__button"></a></li>
+                <li class="pagination__item"><a class="pagination__button"></a></li>
+                <li class="pagination__item"><a class="pagination__button"></a></li>
+            </ul>
+        </main>
+
+        <!-- 时间轴区域 -->
+        <section id="timeline" class="timeline-section">
+            <div class="tl-item left" tabindex="0">
+                <div class="tl-bg" style="background-image: url(https://picsum.photos/600/800?random=1);"></div>
+                <div class="tl-year">
+                    <p class="f2 heading--sanSerif">2009</p>
+                </div>
+                <div class="tl-content">
+                    <h1>Fotografia to moja pasja od 2009 roku</h1>
+                    <p>Już od najmłodszych lat uwielbiałam uchwycać otaczający mnie świat na zdjęciach.</p>
+                </div>
+            </div>
+
+            <div class="tl-item right" tabindex="0">
+                <div class="tl-bg" style="background-image: url(https://picsum.photos/600/800?random=2);"></div>
+                <div class="tl-year">
+                    <p class="f2 heading--sanSerif">2015</p>
+                </div>
+                <div class="tl-content">
+                    <h1>W 2015 roku postanowiłam rozwijać swoje umiejętności</h1>
+                    <p>Ukończyłam studium fotograficzne.</p>
+                </div>
+            </div>
+
+            <div class="tl-item left" tabindex="0">
+                <div class="tl-bg" style="background-image: url(https://picsum.photos/600/800?random=3);"></div>
+                <div class="tl-year">
+                    <p class="f2 heading--sanSerif">2015</p>
+                </div>
+                <div class="tl-content">
+                    <h1>Nauka w szkole dała mi solidne podstawy warsztatowe</h1>
+                    <p>Pozwoliła mi spojrzeć na fotografię z zupełnie nowej perspektywy.</p>
+                </div>
+            </div>
+
+            <div class="tl-item right" tabindex="0">
+                <div class="tl-bg" style="background-image: url(https://picsum.photos/600/800?random=4);"></div>
+                <div class="tl-year">
+                    <p class="f2 heading--sanSerif">2024</p>
+                </div>
+                <div class="tl-content">
+                    <h1>W 2024 roku ukończyłam studia podyplomowe</h1>
+                    <p>Ukończyłam studia z zakresu Fotografii w terapii i rozwoju osobistym!</p>
+                </div>
+            </div>
+
+            <div class="tl-item left" tabindex="0">
+                <div class="tl-bg" style="background-image: url(https://picsum.photos/600/800?random=5);"></div>
+                <div class="tl-year">
+                    <p class="f2 heading--sanSerif">2024</p>
+                </div>
+                <div class="tl-content">
+                    <h1>Uwielbiam uchwycać piękno w jego najczystszej formie</h1>
+                    <p>Moją misją jest sprawić, by każdy, kto staje przed moim obiektywem, poczuł się swobodnie i pewnie, a zdjęcia stały się pamiątką na całe życie.</p>
+                </div>
+            </div>
+
+            <div class="tl-item right" tabindex="0">
+                <div class="tl-bg" style="background-image: url(https://picsum.photos/600/800?random=6);"></div>
+                <div class="tl-year">
+                    <p class="f2 heading--sanSerif">2024</p>
+                </div>
+                <div class="tl-content">
+                    <h1>Fotografowanie to dla mnie nie tylko zawód</h1>
+                    <p>Przede wszystkim sposób na wyrażanie siebie i opowiadanie historii.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-content">
+                <p> &copy; 2025 荏苒签・四载浮光札. All Rights Reserved. </p>
+                <div class="social-icons" style="display: flex; gap: 15px;">
+                    <a href="https://www.dstbp.net" class="social-icon" style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background-color: #b9b5b5; color: #333; text-decoration: none; transition: background-color 0.3s;">
+                        <i class="fa fa-home"></i>
+                    </a>
+                    <a href="mailto:dstbp@qq.com" class="social-icon" style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background-color: #b9b5b5; color: #333; text-decoration: none; transition: background-color 0.3s;">
+                        <i class="fa fa-envelope"></i>
+                    </a>
+                    <a href="https://github.com/DSTBP" class="social-icon" style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background-color: #b9b5b5; color: #333; text-decoration: none; transition: background-color 0.3s;">
+                        <i class="fa fa-github"></i>
+                    </a>
+                </div>            
+            </div>
+        </footer>
+    </div>
+    
+    <script>
+        window.addEventListener('load', function() {
+            const loader = document.querySelector('.loader');
+            const pageWrapper = document.getElementById('page-wrapper');
+
+            if (loader) {
+                setTimeout(() => {
+                    loader.classList.add('hidden');
+                    setTimeout(() => {
+                        loader.style.display = 'none';
+                    }, 500);
+                }, 1000);
+            }
+
+            if (pageWrapper) {
+                setTimeout(() => {
+                    pageWrapper.style.visibility = 'visible';
+                    pageWrapper.style.transition = 'opacity 1s ease';
+                    pageWrapper.style.opacity = '1';
+                }, 200);
+            }
+        });
+    </script>
+    <!-- 引入Momentum Slider库 -->
+    <script src="https://cdn.jsdelivr.net/npm/momentum-slider@0.0.8/dist/momentum-slider.min.js"></script>
+    <!-- 引入JavaScript文件 -->
+    <script src="assets/js/timeline/script.js"></script>
+</body>
+</html>

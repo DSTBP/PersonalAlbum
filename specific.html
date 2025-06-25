@@ -4,15 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
-    <title>知交影谱</title>
+    <title>特定页面</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/loading.css">
     <link rel="stylesheet" href="assets/css/header.css">
     <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/specific/style.css">
     <link rel="stylesheet" href="assets/css/background.css">
-    <link rel="stylesheet" href="assets/css/characters/style.css">
     <style>
+        /* 基础样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #0f0f0f;
             color: #fff;
             overflow-x: hidden;
@@ -22,11 +31,41 @@
             flex-direction: column;
             min-height: 100vh;
         }
-        #page-wrapper > main {
+        
+        .main-content {
             flex: 1;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
+            padding: 20px;
+            margin-top: 80px; /* 为固定header留出空间 */
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            color: #ff3e6c;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff3e6c, #ff9966);
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -47,10 +86,9 @@
             </ul>
         </div>
     </div>
-
     <div id="page-wrapper" style="visibility: hidden; opacity: 0; display: flex; flex-direction: column; min-height: 100vh; flex: 1;">
         <header>
-            <h1 style="font-family: 'SimSun', '宋体', serif;">知交影谱</h1>
+            <h1 style="font-family: 'SimSun', '宋体', serif;">特定页面</h1>
             <nav>
                 <a href="https://album.dstbp.net">扉页</a>
                 <a href="https://album.dstbp.net/timeline.html">时光脉络</a>
@@ -59,56 +97,15 @@
                 <a href="https://album.dstbp.net/moments.html">瞬间纪闻</a>
             </nav>
         </header>
-
-        <main>
-            <div class="team-container">
-                <div class="carousel-container">
-                    <button class="nav-arrow left">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <div class="carousel-track">
-                        <div class="card" data-index="0">
-                            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=3687&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Team Member 1">
-                        </div>
-                        <div class="card" data-index="1">
-                            <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Team Member 2">
-                        </div>
-                        <div class="card" data-index="2">
-                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmVzc2lvbmFsJTIwcGVvcGxlfGVufDB8fDB8fHww" alt="Team Member 3">
-                        </div>
-                        <div class="card" data-index="3">
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cHJvZmVzc2lvbmFsJTIwcGVvcGxlfGVufDB8fDB8fHww" alt="Team Member 4">
-                        </div>
-                        <div class="card" data-index="4">
-                            <img src="https://images.unsplash.com/photo-1655249481446-25d575f1c054?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fHByb2Zlc3Npb25hbCUyMHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D" alt="Team Member 5">
-                        </div>
-                        <div class="card" data-index="5">
-                            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=3687&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Team Member 6">
-                        </div>
-                        <div class="card" data-index="6">
-                            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=3687&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Team Member 6">
-                        </div>
-                        <div class="card" data-index="7">
-                            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=3687&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Team Member 6">
-                        </div>
-                    </div>
-                    <button class="nav-arrow right">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-
-                <div class="member-info">
-                    <h2 class="member-name">David Kim</h2>
-                    <p class="member-role">Founder</p>
-                    <p class="member-bio">David is the founder and CEO of our company, with over 15 years of experience in the tech industry.</p>
-                </div>
-
-                <div class="dots">
-                    <!-- Dots will be generated dynamically by script.js -->
-                </div>
+        
+        <main class="main-content">
+            <h2 class="section-title">特定页面内容</h2>
+            <div class="content-area">
+                <p>这里是特定页面的主要内容区域。</p>
+                <p>您可以在这里添加任何需要的内容。</p>
             </div>
         </main>
-
+        
         <footer>
             <div class="footer-content">
                 <p> &copy; 2025 荏苒签・四载浮光札. All Rights Reserved. </p>
@@ -122,13 +119,11 @@
                     <a href="https://github.com/DSTBP" class="social-icon" style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background-color: #b9b5b5; color: #333; text-decoration: none; transition: background-color 0.3s;">
                         <i class="fa fa-github"></i>
                     </a>
-                </div>
+                </div>            
             </div>
         </footer>
     </div>
-
-
-    <script src="assets/js/characters/script.js"></script>
+    
     <script>
         window.addEventListener('load', function() {
             const loader = document.querySelector('.loader');
