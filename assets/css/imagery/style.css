@@ -1,286 +1,271 @@
-/* 导入字体 */
-@import url("https://fonts.googleapis.com/css2?family=Genos:ital,wght@0,100..900;1,100..900&family=Tangerine:wght@700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Genos:ital,wght@0,100..900;1,100..900&family=Tangerine:wght@700&display=swap');
 
-/* 自定义属性，用于滚动动画 */
 @property --prg {
-  syntax: "<number>";
-  initial-value: 0;
-  inherits: true;
+	syntax: '<number>';
+	initial-value: 0;
+	inherits: true;
 }
 
 @property --out {
-  syntax: "<number>";
-  initial-value: 0;
-  inherits: true;
+	syntax: '<number>';
+	initial-value: 0;
+	inherits: true;
 }
 
 @property --hov {
-  syntax: "<number>";
-  initial-value: 0;
-  inherits: true;
+	syntax: '<number>';
+	initial-value: 0;
+	inherits: true
 }
 
-/* Firefox需要单独定义这些属性 */
+/* needed for Firefox */
 @property --x {
-  syntax: "<length>";
-  initial-value: 0px;
-  inherits: true;
+	syntax: '<length>';
+	initial-value: 0px;
+	inherits: true;
 }
 
 @property --y {
-  syntax: "<length>";
-  initial-value: 0px;
-  inherits: true;
+	syntax: '<length>';
+	initial-value: 0px;
+	inherits: true;
 }
 
-/* 重置样式 */
-* {
-  margin: 0;
-}
+* { margin: 0 }
 
-/* 设置基本显示模式 */
-html,
-body,
-header,
-main,
-footer,
-figure,
-em {
-  display: grid;
-}
+html, body, header, main, footer, figure, em { display: grid }
 
 html {
-  container-type: inline-size;
-  height: 100%;
-  background: #bababa; /* 页面背景色 */
+	container-type: inline-size;
+	height: 100%;
+	background: transparent;
 }
 
 body {
-  --y: 30vh;
-  --x: 100cqw;
-  --out: round(up, var(--prg));
-  --max: Min(30deg, atan2(var(--y), var(--x)));
-  --ang: calc(var(--max) * (1 - 2 * var(--prg)));
-  --tan: tan(abs(var(--ang)));
-  --sgn: sign(var(--ang));
-  --bit: calc(0.5 * (var(--sgn) + 1));
-  --dy: calc(100cqw * var(--tan));
-
-  /* 响应式字体设置 */
-  font: clamp(0.75em, 3vw, 1.5em) / 1 genos, sans-serif;
-  filter: drop-shadow(1px 2px 3px);
-
-  /* 滚动动画时间线 */
-  animation: prg 1s linear;
-  animation-timeline: scroll();
-
-  /* 浏览器兼容性处理 */
-  @supports not (scale: abs(-2)) {
-    --tan: tan(max(var(--ang), -1 * var(--ang)));
-  }
-
-  @supports not (scale: sign(-2)) {
-    --sgn: clamp(-1, tan(var(--ang)) * 10000, 1);
-  }
+	--y: 30vh;
+	--x: 100cqw;
+	--out: round(up, clamp(0, var(--prg), 1));
+	--max: Min(30deg, atan2(var(--y), var(--x)));
+	--ang: calc(var(--max)*(1 - 2*clamp(0, var(--prg), 1)));
+	--tan: tan(abs(var(--ang)));
+	--sgn: sign(var(--ang));
+	--bit: calc(.5*(var(--sgn) + 1));
+	--dy: calc(100cqw*var(--tan));
+	font: clamp(.75em, 3vw, 1.5em)/ 1 genos, sans-serif;
+	filter: drop-shadow(1px 2px 3px);
+	animation: prg 1s linear;
+	animation-timeline: scroll();
+	background: transparent;
+	
+	@supports not (scale: abs(-2)) {
+		--tan: tan(max(var(--ang), -1*var(--ang)))
+	}
+	
+	@supports not (scale: sign(-2)) {
+		--sgn: clamp(-1, tan(var(--ang))*10000, 1)
+	}
 }
 
-/* 滚动动画定义 */
 @supports (animation-timeline: scroll()) {
-  @keyframes prg {
-    to {
-      --prg: 1;
-    }
-  }
+	@keyframes prg { to { --prg: 1 } }
 }
 
-/* 基本布局设置 */
-header,
-footer,
-main {
-  box-sizing: border-box;
-}
+header, footer, main { box-sizing: border-box }
 
-header,
-footer {
-  --dy0: (1 - var(--bit)) * var(--dy);
-  --dy1: var(--bit) * var(--dy);
-  grid-gap: 2em;
-  place-content: center;
-  height: 100vh;
-  height: calc(100dvh + 0.5 * var(--dy));
-  background: #212121; /* 头部和底部背景色 */
-  color: #dedede; /* 文字颜色 */
-  text-wrap: balance; /* 文本平衡换行 */
+header, footer {
+	--dy0: (1 - var(--bit))*var(--dy);
+	--dy1: var(--bit)*var(--dy);
+	grid-gap: 2em;
+	place-content: center;
+	height: 100vh;
+	height: calc(100dvh + .5*var(--dy));
+  color: #f0f0f0;
+	/* background: #212121; */
+	text-wrap: balance;
+	background: transparent;
+	position: relative;
+	z-index: 1;
 }
 
 header {
-  padding-bottom: var(--dy);
-  text-align: center;
-
-  /* 头部区域裁剪路径，创建倾斜效果 */
-  clip-path: polygon(
-    0 0,
-    100% 0,
-    100% calc(100% - var(--dy0)),
-    0 calc(100% - var(--dy1))
-  );
-
-  /* 过渡效果 */
-  transition: --out 1s ease-out, --hov calc(var(--hov) * 6s) linear;
-
-  &:hover {
-    --hov: 1;
-  } /* 悬停效果 */
+	padding-bottom: var(--dy);
+	text-align: center;
+	clip-path: 
+		polygon(0 0, 100% 0, 
+			100% calc(100% - var(--dy0)), 
+			0 calc(100% - var(--dy1)));
+	transition: --out 1s ease-out, 
+		--hov calc(var(--hov)*6s) linear;
+	
+	&:hover { --hov: 1 }
 }
 
-h1,
-em {
-  /* 随滚动变化的位置和透明度 */
-  translate: 0 calc(var(--prg) * 300vh);
-  opacity: calc(1 - var(--out));
-  filter: blur(calc(var(--out) * 8px)) url(#dissolve);
+h1, em {
+	translate: 0 calc(var(--prg)*300vh);
+	opacity: calc(1 - var(--out));
+	filter: blur(calc(var(--out)*8px)) 
+		url(#dissolve)
 }
 
 h1 {
-  max-width: 9em;
-  font-size: 2.5em;
-  font-weight: 500;
+	max-width: 9em;
+	font-size: 2.5em;
+	font-weight: 500
 }
 
 em {
-  place-items: center;
-
-  /* 悬停时字母间距变化效果 */
-  letter-spacing: calc(0.25em * (1 - cos(var(--hov) * 3turn)));
-
-  &::after {
-    /* 向下箭头效果 */
-    padding: 0.5em;
-    border: solid 0;
-    border-width: 0 3px 3px 0;
-    translate: 0 calc(50% * (1 - cos(var(--hov) * 3turn)));
-    rotate: 45deg;
-    content: "";
-  }
+	place-items: center;
+	letter-spacing: calc(.25em*(1 - cos(var(--hov)*3turn)));
+	
+	&::after {
+		padding: .5em;
+		border: solid 0;
+		border-width: 0 3px 3px 0;
+		translate: 0 calc(50%*(1 - cos(var(--hov)*3turn)));
+		rotate: 45deg;
+		content: ''
+	}
 }
 
 main {
-  grid-gap: 0.5em;
-
-  /* 自适应网格布局 */
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12em), 1fr));
-  margin: calc(-0.5 * var(--dy)) 0;
-  padding: 0.5em;
-
-  /* 随滚动变化的倾斜效果 */
-  transform: skewy(var(--ang));
+	grid-gap: .5em;
+	grid-template-columns: 
+		repeat(auto-fit, minmax(min(100%, 12em), 1fr));
+	margin: calc(-.5*var(--dy)) 0;
+	padding: .5em;
+	padding-bottom: 120px;
+	transform: skewy(var(--ang));
+	position: relative;
+	z-index: 1;
 }
 
 figure {
-  grid-template: 100%/ 100%;
-  place-items: center end;
-  container-type: size;
-  overflow: hidden;
-  aspect-ratio: 5/ 2;
-  clip-path: inset(1px round 4px);
-
-  /* 过渡效果 */
-  transition: 0.35s;
-  transition-property: --hov, background-color;
-
-  /* 嵌套悬停效果 */
-  :hover > & {
-    background: rgba(0 0 0 / calc(1 - var(--hov)));
-  }
-
-  &:hover,
-  &:focus-within {
-    --hov: 1;
-  }
+	grid-template: 100%/ 100%;
+	place-items: center end;
+	container-type: size;
+	overflow: hidden;
+	aspect-ratio: 5/ 2;
+	clip-path: inset(1px round 4px);
+	transition: .35s;
+	transition-property: --hov, background-color;
+	
+	:hover > & {
+		background: rgba(0 0 0/ calc(1 - var(--hov)))
+	}
+	
+	&:hover, &:focus-within { --hov: 1 }
 }
 
-img,
-figcaption {
-  grid-area: 1/ 1;
-}
+img, figcaption { grid-area: 1/ 1 }
 
 img {
-  width: 100%;
-  height: calc(100cqh + 100cqw * var(--tan));
-  object-fit: cover;
-
-  /* 随滚动和悬停变化的变换效果 */
-  transform: skewy(calc(-1 * var(--ang))) scale(calc(1 + 0.25 * var(--hov)));
-  mix-blend-mode: luminosity;
-  transition: inherit;
-  transition-property: filter;
+	width: 100%;
+	height: calc(100cqh + 100cqw*var(--tan));
+	object-fit: cover;
+	transform: 
+		skewy(calc(-1*var(--ang))) 
+		scale(calc(1 + .25*var(--hov)));
+	mix-blend-mode: luminosity;
+	transition: inherit;
+	transition-property: filter
 }
 
 figcaption {
-  z-index: 2;
-  padding: 0 0.5em;
-  opacity: var(--hov);
-  background: #fff6; /* 半透明背景 */
-
-  /* 响应式字体 */
-  font: Max(0.625em, 0.625rem, 4.5cqw) / 2 sans-serif;
-  backdrop-filter: blur(4px); /* 毛玻璃效果 */
-
-  a {
-    color: #780116;
-  } /* 链接颜色 */
+	z-index: 2;
+	padding: 0 .5em;
+	opacity: var(--hov);
+	background: #fff6;
+	font: Max(.625em, .625rem, 4.5cqw)/ 2 sans-serif;
+	backdrop-filter: blur(4px);
+	
+	a { color: #780116 }
 }
 
-/* 底部区域裁剪路径，创建倾斜效果 - 已提取为单独类 */
-.clip-bottom-slant {
-  padding-top: var(--dy);
-  clip-path: polygon(
-    100% 100%,
-    0 100%,
-    0 calc(var(--dy0)),
-    100% calc(var(--dy1))
-  );
+footer {
+	padding-top: var(--dy);
+	text-align: center;
+	clip-path: 
+		polygon(100% 100%, 0 100%, 
+			0 calc(var(--dy0)), 100% calc(var(--dy1)))
+	/* background: #212121; */
 }
 
 b {
-  font: 700 2.5em tangerine; /* 特殊字体 */
-  text-shadow: 1px 1px 2px #000; /* 文字阴影 */
+	font: 700 2.5em tangerine;
+	text-shadow: 1px 1px 2px #000
 }
 
 p {
-  max-width: 35em;
-
-  a {
-    color: #f7b538;
-  } /* 链接颜色 */
-  a:is(:focus, :hover) {
-    color: lightskyblue;
-  } /* 链接悬停颜色 */
+	max-width: 35em;
+	
+	a { color: #f7b538 }
+	a:is(:focus, :hover) { color: lightskyblue }
 }
 
-/* 浏览器支持提示 */
+/* just support info */
 aside {
-  position: fixed;
-  bottom: 0;
-  padding: 1em;
+	position: fixed;
+	bottom: 0;
+	padding: 1em;
 }
 
 .box-info-scrollani {
-  margin: 1em;
-  border-left: solid 5px #dc3055;
-  padding: 1em;
-  box-shadow: 2px 2px 5px hsla(0, 0%, 0%, 0.35);
-  background: #851d40;
-  color: #fff;
-  font: 1.25em/ 1.25 ubuntu, trebuchet ms, arial, sans-serif;
-
-  @supports (animation-timeline: scroll()) {
-    display: none;
-  } /* 支持滚动动画时隐藏 */
+	margin: 1em;
+	border-left: solid 5px #dc3055;
+	padding: 1em;
+	box-shadow: 2px 2px 5px hsla(0, 0%, 0%, .35);
+	/* background: #851d40; */
+	color: #fff;
+	font: 1.25em/ 1.25 ubuntu, trebuchet ms, arial, sans-serif;
+	
+	@supports (animation-timeline: scroll()) { display: none }
 }
 
 kbd {
-  padding: 2px;
-  background: hsla(0, 0%, 0%, 0.35);
-  font: 1.1em/ 1.2 ubuntu mono, consolas, monaco, monospace;
+	padding: 2px;
+	background: hsla(0, 0%, 0%, .35);
+	font: 1.1em/ 1.2 ubuntu mono, consolas, monaco, monospace
+}
+
+/* 新增的顶部导航栏样式 */
+.top-nav-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 2.5rem;
+    box-sizing: border-box;
+    z-index: 1000;
+    background: #030303;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.top-nav-container h1 {
+    font-size: 1.5rem;
+    color: #fff;
+    margin: 0;
+}
+
+.top-nav-container nav {
+    display: flex;
+    gap: 0;
+}
+
+.top-nav-container nav a {
+    color: #dedede;
+    text-decoration: none;
+    font-size: 1rem;
+    margin-left: 1rem;
+    transition: color 0.3s ease;
+}
+
+.top-nav-container nav a:first-child {
+    margin-left: 0;
+}
+
+.top-nav-container nav a:hover {
+    color: #ff3e6c;
 }
