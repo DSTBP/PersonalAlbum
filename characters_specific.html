@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="assets/css/loading.css">
     <link rel="stylesheet" href="assets/css/header.css">
     <link rel="stylesheet" href="assets/css/footer.css">
-    <link rel="stylesheet" href="assets/css/specific/style.css">
+    <link rel="stylesheet" href="assets/css/characters/specific.css">
     <link rel="stylesheet" href="assets/css/background.css">
     <style>
         /* 基础样式重置 */
@@ -98,8 +98,7 @@
             </nav>
         </header>
         
-        <main>
-        </main>
+        <div id="wall"></div>
         
         <footer>
             <div class="footer-content">
@@ -118,30 +117,26 @@
             </div>
         </footer>
     </div>
-    
-    <script>
-        window.addEventListener('load', function() {
-            const loader = document.querySelector('.loader');
-            const pageWrapper = document.getElementById('page-wrapper');
-
-            if (loader) {
-                setTimeout(() => {
-                    loader.classList.add('hidden');
-                    setTimeout(() => {
-                        loader.style.display = 'none';
-                    }, 500);
-                }, 1000);
-            }
-
-            if (pageWrapper) {
-                setTimeout(() => {
-                    pageWrapper.style.visibility = 'visible';
-                    pageWrapper.style.transition = 'opacity 1s ease';
-                    pageWrapper.style.opacity = '1';
-                }, 200);
-            }
-        });
-    </script>
     <script src="assets/js/characters/specific.js"></script>
+    <script>
+    window.addEventListener('DOMContentLoaded', function () {
+        const loader = document.querySelector('.loader');
+        const pageWrapper = document.getElementById('page-wrapper');
+        if (loader) {
+            loader.style.transition = 'opacity 1s';
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 1000);
+        }
+        if (pageWrapper) {
+            pageWrapper.style.visibility = 'visible';
+            pageWrapper.style.transition = 'opacity 1s ease';
+            setTimeout(() => {
+                pageWrapper.style.opacity = '1';
+            }, 50);
+        }
+    });
+    </script>
 </body>
 </html>
