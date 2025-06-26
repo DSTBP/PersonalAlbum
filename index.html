@@ -445,27 +445,33 @@
                         <span><ion-icon name="mail-outline"></ion-icon> &nbsp; dstbp@qq.com</span>
                     </div>
                 </div>
-                <!-- <div class="footer-section social">
-                    <h3>社交媒体</h3>
-                    <br>
-                    <div class="socials">
-                        <a href="#"><ion-icon name="logo-youtube"></ion-icon></a>
-                        <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
-                        <a href="#"><ion-icon name="logo-twitter"></ion-icon></a>
-                        <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
-                    </div>
-                </div> -->
+                <div class="footer-section music" id="music-player"></div>
             </div>
             <div class="footer-bottom">
                 &copy; 2025 荏苒签・四载浮光札 | Designed by DSTBP
             </div>
         </footer>
-    </div>
-
-    <button id="back-to-top" class="fa fa-angle-double-up" title="返回顶部"></button>
-
-    <script src="assets/js/homepage/carousel.js"></script>
-    <script src="assets/js/homepage/contain.js"></script>
+        
+        <button id="back-to-top" class="fa fa-angle-double-up" title="返回顶部"></button>
+        
+        <script src="assets/js/homepage/carousel.js"></script>
+        <script src="assets/js/homepage/contain.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const musicDiv = document.getElementById("music-player");
+        
+                function loadPlayer() {
+                    musicDiv.innerHTML = `
+                        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0"
+                            width="330" height="86"
+                            src="https://music.163.com/outchain/player?type=0&id=7011678237&auto=1&height=66"
+                            sandbox="allow-scripts allow-same-origin" allow="autoplay">
+                        </iframe>`;
+                }
+        
+                window.addEventListener("click", loadPlayer, { once: true });
+            });
+        </script>
 </body>
 
 </html>
