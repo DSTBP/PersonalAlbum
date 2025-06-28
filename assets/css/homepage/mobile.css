@@ -58,10 +58,14 @@ index.html 手机端适配样式
         width: 100%;
         height: 100%;
         border-radius: 0;
-        position: relative;
-        opacity: 1;
-        left: 0;
-        transition: transform 0.3s;
+    }
+
+    .slider .item:nth-child(3),
+    .slider .item:nth-child(4),
+    .slider .item:nth-child(5),
+    .slider .item:nth-child(6) {
+        left: 100%;
+        opacity: 0;
     }
 
     .content {

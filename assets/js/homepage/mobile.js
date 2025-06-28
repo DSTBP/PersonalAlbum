@@ -36,15 +36,12 @@ function initMobileCarousel() {
     let startX = 0;
     let currentX = 0;
     let isDragging = false;
-    let activeItem = null;
 
     // 触摸开始
     slider.addEventListener('touchstart', function(e) {
         startX = e.touches[0].clientX;
         isDragging = true;
         slider.style.transition = 'none';
-        // 选中当前可见的item
-        activeItem = slider.querySelector('.item:nth-child(2)') || slider.querySelector('.item');
     }, { passive: true });
 
     // 触摸移动
@@ -53,10 +50,9 @@ function initMobileCarousel() {
         e.preventDefault();
         currentX = e.touches[0].clientX;
         const diff = currentX - startX;
-        // 只做视觉反馈，不移动slider整体
-        if (activeItem) {
-            activeItem.style.transform = 'translateY(-40px) scale(0.9)';
-        }
+        
+        // 添加视觉反馈
+        slider.style.transform = `translateX(${diff * 0.1}px)`;
     }, { passive: false });
 
     // 触摸结束
@@ -65,19 +61,19 @@ function initMobileCarousel() {
         isDragging = false;
         slider.style.transition = 'transform 0.3s ease';
         slider.style.transform = 'translateX(0)';
-        // 恢复item动画
-        if (activeItem) {
-            activeItem.style.transform = '';
-        }
+        
         const diff = currentX - startX;
         const threshold = 50;
+        
         if (Math.abs(diff) > threshold) {
             if (diff > 0) {
+                // 向右滑动 - 上一张
                 if (typeof moveSlider === 'function') {
                     moveSlider('prev');
                     resetInterval();
                 }
             } else {
+                // 向左滑动 - 下一张
                 if (typeof moveSlider === 'function') {
                     moveSlider('next');
                     resetInterval();
