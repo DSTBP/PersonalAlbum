@@ -424,4 +424,117 @@ function initMobileBackToTop() {
 }
 
 // 初始化返回顶部功能
-document.addEventListener('DOMContentLoaded', initMobileBackToTop); 
+document.addEventListener('DOMContentLoaded', initMobileBackToTop);
+
+// 移动端瞬间纪闻3D轮播优化
+function initMobileMoments3D() {
+    // 检测是否为移动设备
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    
+    if (!isMobile && !isTouchDevice) {
+        return; // 非移动设备不执行移动端优化
+    }
+
+    const momentsContainer = document.querySelector('#moments');
+    if (!momentsContainer) return;
+
+    const carousel = momentsContainer.querySelector('.carousel-3d');
+    if (!carousel) return;
+
+    const cells = carousel.querySelectorAll('.carousel-cell');
+    const cellCount = cells.length;
+    if (cellCount === 0) return;
+    
+    const theta = 360 / cellCount;
+    // 移动端减少半径，让圆圈更紧凑
+    const mobileRadius = Math.round((200 / 2) / Math.tan(Math.PI / cellCount)); // 从300减少到200
+
+    let selectedIndex = 0;
+    let rotateY = 0;
+    let startX = 0;
+    let isDragging = false;
+
+    function positionCells() {
+        cells.forEach((cell, i) => {
+            const cellAngle = theta * i;
+            // 修正定位，确保旋转以圆心为中心
+            cell.style.left = '50%';
+            cell.style.top = '50%';
+            cell.style.transform = `rotateY(${cellAngle}deg) translateZ(-${mobileRadius}px) translateX(-50%) translateY(-50%)`;
+        });
+    }
+
+    function rotateCarousel() {
+        const angle = theta * selectedIndex * -1;
+        rotateY = angle;
+        // 保持圆心在上下方向不动，左右方向居中
+        carousel.style.transform = `translateZ(-${mobileRadius}px) rotateY(${angle}deg)`;
+    }
+    
+    function onPointerDown(event) {
+        isDragging = true;
+        startX = event.pageX || event.touches[0].pageX;
+        carousel.style.transition = 'none';
+        if (event.type === 'mousedown') {
+            event.preventDefault();
+        }
+    }
+
+    function onPointerMove(event) {
+        if (!isDragging) return;
+        const x = event.pageX || event.touches[0].pageX;
+        const dx = x - startX;
+        // 移动端调整拖拽灵敏度
+        rotateY += dx * 0.3; // 从0.25增加到0.3，让移动端更容易操作
+        // 保持与rotateCarousel函数一致的transform
+        carousel.style.transform = `translateZ(-${mobileRadius}px) rotateY(${rotateY}deg)`;
+        startX = x;
+    }
+
+    function onPointerUp() {
+        if (!isDragging) return;
+        isDragging = false;
+        carousel.style.transition = 'transform 1s';
+        
+        selectedIndex = Math.round(-rotateY / theta);
+        rotateCarousel();
+    }
+
+    // 移除原有的事件监听器（如果存在）
+    momentsContainer.removeEventListener('mousedown', onPointerDown);
+    document.removeEventListener('mousemove', onPointerMove);
+    document.removeEventListener('mouseup', onPointerUp);
+    momentsContainer.removeEventListener('touchstart', onPointerDown);
+    document.removeEventListener('touchmove', onPointerMove);
+    document.removeEventListener('touchend', onPointerUp);
+
+    // 添加移动端优化的事件监听器
+    momentsContainer.addEventListener('mousedown', onPointerDown);
+    document.addEventListener('mousemove', onPointerMove);
+    document.addEventListener('mouseup', onPointerUp);
+
+    momentsContainer.addEventListener('touchstart', onPointerDown, { passive: true });
+    document.addEventListener('touchmove', onPointerMove, { passive: true });
+    document.addEventListener('touchend', onPointerUp);
+
+    // 重新定位和旋转
+    positionCells();
+    rotateCarousel();
+    
+    // 确保容器在页面中居中显示
+    const scene = momentsContainer.querySelector('.scene');
+    if (scene) {
+        scene.style.display = 'flex';
+        scene.style.justifyContent = 'center';
+        scene.style.alignItems = 'center';
+        scene.style.width = '100%';
+    }
+    
+    // 确保3D轮播容器居中，设置正确的transform-origin
+    carousel.style.transformOrigin = 'center center';
+    carousel.style.position = 'relative';
+}
+
+// 初始化移动端瞬间纪闻3D轮播优化
+document.addEventListener('DOMContentLoaded', initMobileMoments3D); 
