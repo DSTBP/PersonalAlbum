@@ -58,6 +58,7 @@ index.html 手机端适配样式
         width: 100%;
         height: 100%;
         border-radius: 0;
+        z-index: 2; /* 确保item不被header遮挡 */
     }
 
     .slider .item:nth-child(3),
@@ -74,6 +75,7 @@ index.html 手机端适配样式
         top: 60%;
         transform: translateY(-50%);
         text-align: center;
+        z-index: 3; /* 确保内容不被header遮挡 */
     }
 
     .content .title {
@@ -251,10 +253,15 @@ index.html 手机端适配样式
         padding-top: 70px;
     }
 
+    .slider .item {
+        z-index: 2; /* 确保item不被header遮挡 */
+    }
+
     .content {
         width: 95%;
         left: 2.5%;
         top: 65%;
+        z-index: 3; /* 确保内容不被header遮挡 */
     }
 
     .content .title {
@@ -371,11 +378,16 @@ index.html 手机端适配样式
         padding-top: 60px;
     }
 
+    .slider .item {
+        z-index: 2; /* 确保item不被header遮挡 */
+    }
+
     .content {
         top: 50%;
         width: 60%;
         left: 3rem;
         text-align: left;
+        z-index: 3; /* 确保内容不被header遮挡 */
     }
 
     .content .title {
