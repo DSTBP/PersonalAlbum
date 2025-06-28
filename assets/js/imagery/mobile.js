@@ -31,12 +31,13 @@ function initMobileScroll() {
     document.body.style.overflow = 'auto';
     document.body.style.webkitOverflowScrolling = 'touch';
     
-    // 移除可能阻止滚动的CSS属性
+    // 保留动画效果，但优化滚动
     const main = document.querySelector('main');
     if (main) {
-        main.style.transform = 'none'; // 移除skew变换，避免影响滚动
+        // 不移除transform，而是优化滚动性能
         main.style.overflow = 'visible';
         main.style.position = 'relative';
+        main.style.willChange = 'transform'; // 优化变换性能
     }
     
     // 确保header不会阻止滚动
@@ -141,6 +142,60 @@ function initMobilePerformance() {
     if (viewport) {
         viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes');
     }
+    
+    // 移动端滚动动画优化
+    initMobileScrollAnimation();
+}
+
+// 移动端滚动动画优化
+function initMobileScrollAnimation() {
+    // 确保CSS动画时间轴在移动端正常工作
+    const body = document.body;
+    
+    // 监听滚动事件，手动触发动画更新
+    let scrollProgress = 0;
+    window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        scrollProgress = scrollTop / docHeight;
+        
+        // 更新CSS自定义属性
+        body.style.setProperty('--prg', scrollProgress);
+        
+        // 触发动画更新
+        requestAnimationFrame(() => {
+            // 确保动画时间轴更新
+            if (CSS.supports('animation-timeline: scroll()')) {
+                // 现代浏览器支持
+                body.style.animationTimeline = 'scroll()';
+            } else {
+                // 降级处理：手动更新变换
+                updateManualAnimation(scrollProgress);
+            }
+        });
+    }, { passive: true });
+}
+
+// 手动更新动画（降级处理）
+function updateManualAnimation(progress) {
+    const figures = document.querySelectorAll('figure');
+    const main = document.querySelector('main');
+    
+    if (main) {
+        // 根据滚动进度更新main的变换
+        const skewAngle = progress * 30; // 最大30度倾斜
+        main.style.transform = `skewy(${skewAngle}deg)`;
+    }
+    
+    figures.forEach((figure, index) => {
+        // 为每个图片添加基于滚动进度的动画
+        const delay = index * 0.1;
+        const opacity = Math.max(0.3, 1 - Math.abs(progress - delay) * 2);
+        const scale = 0.8 + opacity * 0.4;
+        
+        figure.style.opacity = opacity;
+        figure.style.transform = `scale(${scale})`;
+    });
 }
 
 // 移动端CSS样式注入
@@ -155,18 +210,19 @@ function injectMobileStyles() {
                 position: relative !important;
             }
             
-            /* 移除可能影响滚动的变换 */
+            /* 保留动画效果，但优化滚动性能 */
             main {
-                transform: none !important;
-                transform-style: flat !important;
-                perspective: none !important;
+                transform-style: preserve-3d !important;
+                perspective: 1000px !important;
                 overflow: visible !important;
+                will-change: transform !important;
+                /* 不移除skew变换，保留动画效果 */
             }
             
-            /* 优化图片网格布局 */
+            /* 优化图片网格布局，保留动画 */
             figure {
-                transform: none !important;
                 transition: transform 0.2s ease !important;
+                will-change: transform !important;
             }
             
             figure:hover {
@@ -204,6 +260,18 @@ function injectMobileStyles() {
                 -moz-user-select: text !important;
                 -ms-user-select: text !important;
                 user-select: text !important;
+            }
+            
+            /* 优化滚动性能 */
+            img {
+                will-change: transform !important;
+                backface-visibility: hidden !important;
+                -webkit-backface-visibility: hidden !important;
+            }
+            
+            /* 确保动画时间轴正常工作 */
+            body {
+                animation-timeline: scroll() !important;
             }
         }
     `;
