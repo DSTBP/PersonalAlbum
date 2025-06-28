@@ -8,4 +8,4 @@ window.addEventListener('DOMContentLoaded', function () {
             loader.style.display = 'none';
         }, 1000);
     }
-}); 
+});
