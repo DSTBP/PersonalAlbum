@@ -1,0 +1,13 @@
+/* 只影响moments.html页面的header，不影响其他页面 */
+body.moments-page header {
+    width: calc(100vw - var(--scrollbar-width, 0px));
+    box-sizing: border-box;
+    right: auto;
+    left: 0;
+}
+
+@media (max-width: 768px) {
+    body.moments-page header {
+        width: 100vw;
+    }
+} 

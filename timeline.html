@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="assets/css/background.css">
     <link rel="stylesheet" href="assets/css/timeline/style.css">
     <link rel="stylesheet" href="assets/css/timeline/timeline.css">
+    <link rel="stylesheet" href="assets/css/timeline/mobile.css">
     <style>
         /* 基础样式重置 */
         * {
@@ -72,7 +73,7 @@
         }
     </style>
 </head>
-<body>
+<body class="timeline-page">
     <div id="stars"></div>
     <div id="stars2"></div>
     <div id="stars3"></div>
@@ -92,7 +93,10 @@
     <div id="page-wrapper" style="visibility: hidden; opacity: 0; display: flex; flex-direction: column; flex: 1;">
         <header>
             <h1 style="font-family: 'SimSun', '宋体', serif;">时光脉络</h1>
-            <nav>
+            <button class="hamburger" aria-label="展开菜单" aria-expanded="false" aria-controls="timeline-nav" style="display:none;">
+                <span>&#9776;</span>
+            </button>
+            <nav id="timeline-nav">
                 <a href="https://album.dstbp.net">扉页</a>
                 <a href="https://album.dstbp.net/timeline.html">时光脉络</a>
                 <a href="https://album.dstbp.net/imagery.html">意象集录</a>
@@ -228,5 +232,45 @@
     <script src="https://cdn.jsdelivr.net/npm/momentum-slider@0.0.8/dist/momentum-slider.min.js"></script>
     <!-- 引入JavaScript文件 -->
     <script src="assets/js/timeline/script.js"></script>
+    <script>
+    // timeline.html 顶部导航汉堡菜单折叠逻辑，仅在手机端生效
+    (function() {
+      function isMobile() {
+        return window.innerWidth <= 768;
+      }
+      function updateHamburgerDisplay() {
+        var hamburger = document.querySelector('.hamburger');
+        var nav = document.getElementById('timeline-nav');
+        if (!hamburger || !nav) return;
+        if (isMobile()) {
+          hamburger.style.display = 'block';
+          nav.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        } else {
+          hamburger.style.display = 'none';
+          nav.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        }
+      }
+      document.addEventListener('DOMContentLoaded', function() {
+        var hamburger = document.querySelector('.hamburger');
+        var nav = document.getElementById('timeline-nav');
+        if (!hamburger || !nav) return;
+        hamburger.addEventListener('click', function() {
+          var isOpen = nav.classList.toggle('open');
+          hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+        // 点击菜单项自动收起
+        nav.addEventListener('click', function(e) {
+          if (e.target.tagName === 'A' && isMobile()) {
+            nav.classList.remove('open');
+            hamburger.setAttribute('aria-expanded', 'false');
+          }
+        });
+        updateHamburgerDisplay();
+        window.addEventListener('resize', updateHamburgerDisplay);
+      });
+    })();
+    </script>
 </body>
 </html>

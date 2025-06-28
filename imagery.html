@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
-    <title>Pure CSS on scroll tilt & zoom grid</title>
+    <title>意象集录</title>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/imagery/style.css">
     <link rel="stylesheet" href="assets/css/loading.css">
     <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="assets/css/background.css">
+    <link rel="stylesheet" href="assets/css/imagery/mobile.css">
 </head>
 
-<body>
+<body class="imagery-page">
     <div class="loader">
         <div class="loader-content">
             <ul class="hexagon-container">
@@ -33,7 +34,10 @@
         <header>
             <div class="top-nav-container">
                 <h1 style="font-family: 'SimSun', '宋体', serif;">意象集录</h1>
-                <nav>
+                <button class="hamburger" aria-label="展开菜单" aria-expanded="false" aria-controls="imagery-nav" style="display:none;">
+                    <span>&#9776;</span>
+                </button>
+                <nav id="imagery-nav">
                     <a href="https://album.dstbp.net">扉页</a>
                     <a href="https://album.dstbp.net/timeline.html">时光脉络</a>
                     <a href="https://album.dstbp.net/imagery.html">意象集录</a>
@@ -463,6 +467,46 @@
                 }, 1000);
             }
         });
+    </script>
+    <script>
+    // imagery.html 顶部导航汉堡菜单折叠逻辑，仅在手机端生效
+    (function() {
+      function isMobile() {
+        return window.innerWidth <= 768;
+      }
+      function updateHamburgerDisplay() {
+        var hamburger = document.querySelector('.hamburger');
+        var nav = document.getElementById('imagery-nav');
+        if (!hamburger || !nav) return;
+        if (isMobile()) {
+          hamburger.style.display = 'block';
+          nav.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        } else {
+          hamburger.style.display = 'none';
+          nav.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        }
+      }
+      document.addEventListener('DOMContentLoaded', function() {
+        var hamburger = document.querySelector('.hamburger');
+        var nav = document.getElementById('imagery-nav');
+        if (!hamburger || !nav) return;
+        hamburger.addEventListener('click', function() {
+          var isOpen = nav.classList.toggle('open');
+          hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+        // 点击菜单项自动收起
+        nav.addEventListener('click', function(e) {
+          if (e.target.tagName === 'A' && isMobile()) {
+            nav.classList.remove('open');
+            hamburger.setAttribute('aria-expanded', 'false');
+          }
+        });
+        updateHamburgerDisplay();
+        window.addEventListener('resize', updateHamburgerDisplay);
+      });
+    })();
     </script>
 </body>
 

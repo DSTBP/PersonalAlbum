@@ -1,0 +1,244 @@
+/* 只影响moments.html页面的手机端适配，不影响其他页面 */
+@media screen and (max-width: 768px) {
+  body.moments-page {
+    padding: 0;
+    font-size: 15px;
+    background: #111;
+  }
+  body.moments-page header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 100;
+    padding: 0.7rem 1rem;
+    background: rgba(0,0,0,0.92);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  body.moments-page header h1 {
+    font-size: 1.2rem;
+    margin-bottom: 0.1rem;
+    letter-spacing: 0.1em;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+  }
+  body.moments-page .hamburger {
+    display: block;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    margin: 0.2rem 0 0.2rem 0;
+    cursor: pointer;
+    align-self: center;
+    z-index: 120;
+  }
+  body.moments-page header nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 0.5rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(.4,2,.6,1), opacity 0.3s;
+    opacity: 0;
+    background: none;
+    padding: 0;
+  }
+  body.moments-page header nav.open {
+    max-height: 300px;
+    opacity: 1;
+    background: rgba(0,0,0,0.96);
+    padding: 0.5rem 0 0.5rem 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  }
+  body.moments-page header nav a {
+    font-size: 1rem;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.08);
+    text-decoration: none;
+    transition: background 0.2s;
+    width: 100%;
+    text-align: center;
+  }
+  body.moments-page header nav a:hover {
+    background: rgba(255,255,255,0.18);
+  }
+  #page-wrapper {
+    margin-top: 60px;
+    padding: 0 0.5rem;
+  }
+  .main-flex {
+    flex-direction: column !important;
+    width: 100vw !important;
+    gap: 1.5rem;
+  }
+  .left-panel {
+    width: 100vw !important;
+    min-width: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: visible;
+    overflow-y: visible;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 80px;
+  }
+  .right-panel {
+    width: 100vw !important;
+    min-width: 0;
+    padding: 0.5rem 0 1.5rem 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background: none;
+  }
+  .container {
+    padding: 0.5rem 0.2rem;
+  }
+  #spin-container {
+    min-height: 300px;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-bottom: 1rem;
+    margin: 0 auto;
+  }
+  #drag-container {
+    width: 100vw;
+    min-height: 300px;
+    overflow: visible;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #spin-container img, #spin-container video {
+    max-width: 70vw;
+    width: 180px;
+    height: auto;
+    border-radius: 10px;
+    margin: 0.5rem auto;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    display: block;
+  }
+  .section-title {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+  .hex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.7rem 0.4rem;
+    padding: 0.5rem 0 0.5rem 0;
+    max-width: 98vw;
+    margin: 0 auto;
+  }
+  .hex-item {
+    width: calc(44vw + 24px);
+    height: calc(44vw + 24px);
+    max-width: 170px;
+    max-height: 170px;
+    min-width: 100px;
+    min-height: 100px;
+    margin: 0.1rem;
+    border-radius: 18px;
+    overflow: hidden;
+    background: none;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.16);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.22s, box-shadow 0.22s;
+    animation: hex-breath 2.2s infinite ease-in-out;
+    position: relative;
+  }
+  .hex-item:nth-child(4n+2),
+  .hex-item:nth-child(4n+4) {
+    margin-top: 18px;
+  }
+  .hex-item:nth-child(3n) {
+    transform: rotate(-3deg);
+  }
+  .hex-item:nth-child(5n) {
+    transform: rotate(2.5deg);
+  }
+  .hex-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 18px;
+    transition: transform 0.22s;
+    background: none;
+  }
+  .hex-item:active, .hex-item:hover {
+    transform: scale(1.08) rotate(-2deg) !important;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+    z-index: 2;
+  }
+  .hex-item:active img, .hex-item:hover img {
+    transform: scale(1.08) rotate(2deg);
+  }
+  @keyframes hex-breath {
+    0% { box-shadow: 0 2px 12px rgba(0,0,0,0.16); }
+    50% { box-shadow: 0 10px 32px rgba(0,0,0,0.28); }
+    100% { box-shadow: 0 2px 12px rgba(0,0,0,0.16); }
+  }
+  .footer-content {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.2rem 0.5rem;
+    text-align: center;
+  }
+  .social-icons {
+    justify-content: center !important;
+    gap: 10px !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  body.moments-page header h1 {
+    font-size: 1rem;
+  }
+  body.moments-page .hamburger {
+    font-size: 1.5rem;
+  }
+  body.moments-page header nav a {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.5rem;
+  }
+  .hex-item {
+    width: 60px;
+    height: 60px;
+  }
+  .section-title {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .hex-item {
+    width: 44px;
+    height: 44px;
+  }
+  .section-title {
+    font-size: 0.9rem;
+  }
+} 

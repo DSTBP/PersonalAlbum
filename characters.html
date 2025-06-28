@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="assets/css/background.css">
     <link rel="stylesheet" href="assets/css/characters/style.css">
+    <link rel="stylesheet" href="assets/css/characters/mobile.css">
     <style>
         body {
             background-color: #0f0f0f;
@@ -30,7 +31,7 @@
         }
     </style>
 </head>
-<body>
+<body class="characters-page">
     <div id="stars"></div>
     <div id="stars2"></div>
     <div id="stars3"></div>
@@ -49,9 +50,12 @@
     </div>
 
     <div id="page-wrapper" style="visibility: hidden; opacity: 0; display: flex; flex-direction: column; min-height: 100vh; flex: 1;">
-        <header>
+        <header style="position:relative;">
             <h1 style="font-family: 'SimSun', '宋体', serif;">知交影谱</h1>
-            <nav>
+            <button class="hamburger" aria-label="展开菜单" aria-expanded="false" aria-controls="characters-nav" style="display:none;">
+                <span>&#9776;</span>
+            </button>
+            <nav id="characters-nav">
                 <a href="https://album.dstbp.net">扉页</a>
                 <a href="https://album.dstbp.net/timeline.html">时光脉络</a>
                 <a href="https://album.dstbp.net/imagery.html">意象集录</a>
@@ -129,6 +133,7 @@
 
 
     <script src="assets/js/characters/script.js"></script>
+    <script src="assets/js/characters/mobile.js"></script>
     <script>
         window.addEventListener('load', function() {
             const loader = document.querySelector('.loader');

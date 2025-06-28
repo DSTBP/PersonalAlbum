@@ -1,0 +1,493 @@
+/* 
+==========================================
+index.html 手机端适配样式
+==========================================
+专门为首页设计的移动端响应式样式
+不影响其他页面的布局和样式
+*/
+
+/* 基础移动端设置 */
+@media screen and (max-width: 768px) {
+    /* 页面整体适配 */
+    #page-wrapper {
+        overflow-x: hidden;
+        width: 100%;
+    }
+
+    /* 头部导航适配 */
+    header {
+        padding: 0.8rem 1rem;
+        flex-direction: column;
+        gap: 0.5rem;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    header h1 {
+        font-size: 1.2rem;
+        margin: 0;
+        text-align: center;
+    }
+
+    header nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    header nav a {
+        font-size: 0.8rem;
+        margin: 0;
+        padding: 0.3rem 0.6rem;
+        border-radius: 4px;
+        background-color: rgba(255, 255, 255, 0.1);
+        transition: background-color 0.3s;
+    }
+
+    header nav a:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* 轮播区域适配 */
+    main#carousel-section {
+        height: 100vh;
+        padding-top: 80px; /* 为固定头部留出空间 */
+    }
+
+    .slider .item {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+
+    .slider .item:nth-child(3),
+    .slider .item:nth-child(4),
+    .slider .item:nth-child(5),
+    .slider .item:nth-child(6) {
+        left: 100%;
+        opacity: 0;
+    }
+
+    .content {
+        width: 90%;
+        left: 5%;
+        top: 60%;
+        transform: translateY(-50%);
+        text-align: center;
+    }
+
+    .content .title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .content .description {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin: 1rem 0;
+    }
+
+    .content button {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+        border-radius: 25px;
+    }
+
+    /* 轮播导航适配 */
+    .nav {
+        bottom: 1rem;
+        width: 90%;
+        justify-content: center;
+    }
+
+    .nav .btn {
+        min-height: 44px;
+        min-width: 44px;
+        display: none; /* 在触摸设备上也隐藏切换按钮 */
+    }
+
+    .nav .dots {
+        margin: 0;
+    }
+
+    .nav .dots .dot {
+        width: 8px;
+        height: 8px;
+        margin: 0 3px;
+    }
+
+    /* 内容区域适配 */
+    .content-category {
+        padding: 2rem 1rem;
+    }
+
+    .content-category h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .content-category p {
+        font-size: 0.9rem;
+        margin-bottom: 2rem;
+    }
+
+    /* 时光脉络区域适配 */
+    #timeline .row__inner {
+        margin: 40px 0;
+        padding: 0 1rem;
+    }
+
+    #timeline .tile,
+    #characters .tile {
+        width: 250px;
+        height: 180px;
+        margin-right: 12px;
+    }
+
+    #timeline .tile__title,
+    #characters .tile__title {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+
+    /* 意象集录轮播适配 */
+    #imagery #carousel {
+        height: 300px;
+        margin: 2rem 0;
+    }
+
+    #imagery #carousel div {
+        width: 80%;
+        height: 250px;
+    }
+
+    #imagery #carousel div img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* 瞬间纪闻3D轮播适配 */
+    #moments .scene {
+        height: 400px;
+        margin: 2rem 0;
+    }
+
+    #moments .carousel-3d {
+        height: 350px;
+    }
+
+    #moments .carousel-cell {
+        width: 200px;
+        height: 150px;
+    }
+
+    #moments .carousel-cell img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* 查看更多按钮适配 */
+    .view-more-container {
+        margin: 2rem 0;
+    }
+
+    .view-more-btn {
+        padding: 0.8rem 2rem;
+        font-size: 0.9rem;
+        border-radius: 25px;
+    }
+
+    /* 页脚适配 */
+    .footer-content {
+        flex-direction: column;
+        padding: 2rem 1rem;
+        gap: 2rem;
+        text-align: center;
+    }
+
+    .footer-section {
+        min-width: auto;
+        width: 100%;
+    }
+
+    .footer-section.about {
+        flex: none;
+    }
+
+    .contact span {
+        font-size: 0.9rem;
+        margin-bottom: 0.8rem;
+    }
+
+    /* 返回顶部按钮适配 */
+    #back-to-top {
+        right: 1rem;
+        bottom: 1rem;
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+        line-height: 45px;
+    }
+}
+
+/* 小屏幕手机适配 */
+@media screen and (max-width: 480px) {
+    header {
+        padding: 0.6rem 0.8rem;
+    }
+
+    header h1 {
+        font-size: 1rem;
+    }
+
+    header nav a {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.4rem;
+    }
+
+    main#carousel-section {
+        padding-top: 70px;
+    }
+
+    .content {
+        width: 95%;
+        left: 2.5%;
+        top: 65%;
+    }
+
+    .content .title {
+        font-size: 1.3rem;
+    }
+
+    .content .description {
+        font-size: 0.8rem;
+    }
+
+    .content button {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.8rem;
+    }
+
+    .content-category h2 {
+        font-size: 1.5rem;
+    }
+
+    .content-category p {
+        font-size: 0.8rem;
+    }
+
+    #timeline .tile,
+    #characters .tile {
+        width: 200px;
+        height: 150px;
+    }
+
+    #imagery #carousel {
+        height: 250px;
+    }
+
+    #imagery #carousel div {
+        width: 85%;
+        height: 200px;
+    }
+
+    #moments .scene {
+        height: 350px;
+    }
+
+    #moments .carousel-3d {
+        height: 300px;
+    }
+
+    #moments .carousel-cell {
+        width: 150px;
+        height: 120px;
+    }
+
+    .footer-content {
+        padding: 1.5rem 0.8rem;
+    }
+
+    .contact span {
+        font-size: 0.8rem;
+    }
+}
+
+/* 超小屏幕适配 */
+@media screen and (max-width: 360px) {
+    header nav {
+        gap: 0.3rem;
+    }
+
+    header nav a {
+        font-size: 0.65rem;
+        padding: 0.15rem 0.3rem;
+    }
+
+    .content .title {
+        font-size: 1.1rem;
+    }
+
+    .content .description {
+        font-size: 0.75rem;
+    }
+
+    #timeline .tile,
+    #characters .tile {
+        width: 180px;
+        height: 130px;
+    }
+
+    #imagery #carousel div {
+        width: 90%;
+        height: 180px;
+    }
+
+    #moments .carousel-cell {
+        width: 120px;
+        height: 100px;
+    }
+}
+
+/* 横屏模式适配 */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+    header {
+        padding: 0.5rem 1rem;
+        flex-direction: row;
+    }
+
+    header h1 {
+        font-size: 1rem;
+    }
+
+    header nav a {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.4rem;
+    }
+
+    main#carousel-section {
+        padding-top: 60px;
+    }
+
+    .content {
+        top: 50%;
+        width: 60%;
+        left: 3rem;
+        text-align: left;
+    }
+
+    .content .title {
+        font-size: 1.2rem;
+    }
+
+    .content .description {
+        font-size: 0.8rem;
+    }
+
+    #timeline .tile,
+    #characters .tile {
+        width: 220px;
+        height: 160px;
+    }
+
+    #imagery #carousel {
+        height: 200px;
+    }
+
+    #imagery #carousel div {
+        height: 160px;
+    }
+
+    #moments .scene {
+        height: 250px;
+    }
+
+    #moments .carousel-3d {
+        height: 200px;
+    }
+}
+
+/* 触摸优化 */
+@media (hover: none) and (pointer: coarse) {
+    /* 增加触摸目标大小 */
+    header nav a {
+        min-height: 44px;
+        min-width: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nav .btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    .view-more-btn {
+        min-height: 44px;
+        min-width: 120px;
+    }
+
+    #back-to-top {
+        min-height: 50px;
+        min-width: 50px;
+    }
+
+    /* 移除悬停效果，改用触摸反馈 */
+    .tile:hover .tile__details {
+        opacity: 0;
+    }
+
+    .tile:active .tile__details {
+        opacity: 1;
+    }
+
+    .gallery-item:hover img {
+        transform: none;
+    }
+
+    .gallery-item:active img {
+        transform: scale(1.05);
+    }
+}
+
+/* 高分辨率屏幕适配 */
+@media screen and (min-resolution: 2dppx) {
+    .tile__img,
+    .carousel-cell img,
+    #carousel div img {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* 减少动画以提高性能 */
+@media (prefers-reduced-motion: reduce) {
+    .item,
+    .tile,
+    .carousel-cell,
+    .gallery-item img {
+        transition: none;
+    }
+
+    .content {
+        animation: none;
+    }
+}
+
+/* 深色模式支持 */
+@media (prefers-color-scheme: dark) {
+    .content-category {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .content-category h2 {
+        color: #fff;
+    }
+
+    .content-category p {
+        color: #ccc;
+    }
+} 
