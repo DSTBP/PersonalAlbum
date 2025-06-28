@@ -365,8 +365,8 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // 返回顶部按钮功能
-// 页面加载时自动回到顶部
-window.scrollTo({ top: 0, behavior: 'auto' });
+// 注释掉自动滚动到顶部，避免干扰正常滚动
+// window.scrollTo({ top: 0, behavior: 'auto' });
 document.addEventListener('DOMContentLoaded', function () {
     const backToTopBtn = document.getElementById('back-to-top');
     if (!backToTopBtn) return;

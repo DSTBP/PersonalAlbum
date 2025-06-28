@@ -34,49 +34,69 @@ function initMobileCarousel() {
     if (!slider) return;
 
     let startX = 0;
+    let startY = 0;
     let currentX = 0;
     let isDragging = false;
+    let isHorizontalSwipe = false;
 
     // 触摸开始
     slider.addEventListener('touchstart', function(e) {
         startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
         isDragging = true;
+        isHorizontalSwipe = false;
         slider.style.transition = 'none';
     }, { passive: true });
 
     // 触摸移动
     slider.addEventListener('touchmove', function(e) {
         if (!isDragging) return;
-        e.preventDefault();
-        currentX = e.touches[0].clientX;
-        const diff = currentX - startX;
         
-        // 添加视觉反馈
-        slider.style.transform = `translateX(${diff * 0.1}px)`;
+        currentX = e.touches[0].clientX;
+        const currentY = e.touches[0].clientY;
+        const diffX = Math.abs(currentX - startX);
+        const diffY = Math.abs(currentY - startY);
+        
+        // 判断是否为水平滑动
+        if (!isHorizontalSwipe && diffX > 10) {
+            isHorizontalSwipe = true;
+        }
+        
+        // 只有在水平滑动时才阻止默认行为
+        if (isHorizontalSwipe && diffX > diffY) {
+            e.preventDefault();
+            const diff = currentX - startX;
+            // 添加视觉反馈 - 注释掉，防止图片移动
+            // slider.style.transform = `translateX(${diff * 0.1}px)`;
+        }
     }, { passive: false });
 
     // 触摸结束
     slider.addEventListener('touchend', function(e) {
         if (!isDragging) return;
         isDragging = false;
-        slider.style.transition = 'transform 0.3s ease';
-        slider.style.transform = 'translateX(0)';
+        // 移除过渡效果和位移重置，防止图片移动
+        // slider.style.transition = 'transform 0.3s ease';
+        // slider.style.transform = 'translateX(0)';
         
-        const diff = currentX - startX;
-        const threshold = 50;
-        
-        if (Math.abs(diff) > threshold) {
-            if (diff > 0) {
-                // 向右滑动 - 上一张
-                if (typeof moveSlider === 'function') {
-                    moveSlider('prev');
-                    resetInterval();
-                }
-            } else {
-                // 向左滑动 - 下一张
-                if (typeof moveSlider === 'function') {
-                    moveSlider('next');
-                    resetInterval();
+        // 只有在水平滑动时才处理轮播切换
+        if (isHorizontalSwipe) {
+            const diff = currentX - startX;
+            const threshold = 50;
+            
+            if (Math.abs(diff) > threshold) {
+                if (diff > 0) {
+                    // 向右滑动 - 上一张
+                    if (typeof moveSlider === 'function') {
+                        moveSlider('prev');
+                        resetInterval();
+                    }
+                } else {
+                    // 向左滑动 - 下一张
+                    if (typeof moveSlider === 'function') {
+                        moveSlider('next');
+                        resetInterval();
+                    }
                 }
             }
         }
@@ -93,21 +113,38 @@ function initTouchSwipe() {
         if (!row) return;
         
         let startX = 0;
+        let startY = 0;
         let scrollLeft = 0;
         let isScrolling = false;
+        let isHorizontalSwipe = false;
 
         row.addEventListener('touchstart', function(e) {
             startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
             scrollLeft = row.scrollLeft;
             isScrolling = true;
+            isHorizontalSwipe = false;
         }, { passive: true });
 
         row.addEventListener('touchmove', function(e) {
             if (!isScrolling) return;
-            e.preventDefault();
-            const x = e.touches[0].clientX;
-            const walk = (startX - x) * 2;
-            row.scrollLeft = scrollLeft + walk;
+            
+            const currentX = e.touches[0].clientX;
+            const currentY = e.touches[0].clientY;
+            const diffX = Math.abs(currentX - startX);
+            const diffY = Math.abs(currentY - startY);
+            
+            // 判断是否为水平滑动
+            if (!isHorizontalSwipe && diffX > 10) {
+                isHorizontalSwipe = true;
+            }
+            
+            // 只有在水平滑动时才阻止默认行为并处理滚动
+            if (isHorizontalSwipe && diffX > diffY) {
+                e.preventDefault();
+                const walk = (startX - currentX) * 2;
+                row.scrollLeft = scrollLeft + walk;
+            }
         }, { passive: false });
 
         row.addEventListener('touchend', function() {
@@ -119,26 +156,50 @@ function initTouchSwipe() {
     const imageryCarousel = document.querySelector('#imagery #carousel');
     if (imageryCarousel) {
         let startX = 0;
+        let startY = 0;
         let currentIndex = 3; // 默认选中中间项
+        let isHorizontalSwipe = false;
 
         imageryCarousel.addEventListener('touchstart', function(e) {
             startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            isHorizontalSwipe = false;
         }, { passive: true });
 
-        imageryCarousel.addEventListener('touchend', function(e) {
-            const endX = e.changedTouches[0].clientX;
-            const diff = startX - endX;
-            const threshold = 30;
+        imageryCarousel.addEventListener('touchmove', function(e) {
+            const currentX = e.touches[0].clientX;
+            const currentY = e.touches[0].clientY;
+            const diffX = Math.abs(currentX - startX);
+            const diffY = Math.abs(currentY - startY);
+            
+            // 判断是否为水平滑动
+            if (!isHorizontalSwipe && diffX > 10) {
+                isHorizontalSwipe = true;
+            }
+            
+            // 只有在水平滑动时才阻止默认行为
+            if (isHorizontalSwipe && diffX > diffY) {
+                e.preventDefault();
+            }
+        }, { passive: false });
 
-            if (Math.abs(diff) > threshold) {
-                if (diff > 0 && currentIndex < 6) {
-                    // 向左滑动 - 下一张
-                    currentIndex++;
-                    updateCarouselPosition();
-                } else if (diff < 0 && currentIndex > 0) {
-                    // 向右滑动 - 上一张
-                    currentIndex--;
-                    updateCarouselPosition();
+        imageryCarousel.addEventListener('touchend', function(e) {
+            // 只有在水平滑动时才处理轮播切换
+            if (isHorizontalSwipe) {
+                const endX = e.changedTouches[0].clientX;
+                const diff = startX - endX;
+                const threshold = 30;
+
+                if (Math.abs(diff) > threshold) {
+                    if (diff > 0 && currentIndex < 6) {
+                        // 向左滑动 - 下一张
+                        currentIndex++;
+                        updateCarouselPosition();
+                    } else if (diff < 0 && currentIndex > 0) {
+                        // 向右滑动 - 上一张
+                        currentIndex--;
+                        updateCarouselPosition();
+                    }
                 }
             }
         }, { passive: true });
@@ -316,7 +377,8 @@ function initMobilePerformance() {
         viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
     }
 
-    // 防止双击缩放
+    // 注释掉防止双击缩放的代码，因为它可能影响页面滚动
+    /*
     let lastTouchEnd = 0;
     document.addEventListener('touchend', function(event) {
         const now = (new Date()).getTime();
@@ -325,6 +387,7 @@ function initMobilePerformance() {
         }
         lastTouchEnd = now;
     }, false);
+    */
 }
 
 // 移动端返回顶部优化

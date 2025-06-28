@@ -211,6 +211,38 @@
     justify-content: center !important;
     gap: 10px !important;
   }
+  #moments .scene {
+    width: 98vw !important;
+    max-width: 100vw;
+    height: 48vw !important;
+    max-height: 60vw;
+    min-height: 220px;
+    margin: 16px auto 0 auto;
+  }
+  #moments .carousel-3d {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 220px;
+    position: absolute;
+  }
+  #moments .carousel-cell {
+    width: 90vw !important;
+    max-width: 98vw;
+    height: 48vw !important;
+    max-height: 60vw;
+    min-width: 220px;
+    min-height: 160px;
+    left: 0 !important;
+    top: 0 !important;
+    margin-top: 0 !important;
+    border-width: 2px;
+  }
+  #moments .carousel-cell img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 10px;
+  }
 }
 
 @media screen and (max-width: 480px) {
