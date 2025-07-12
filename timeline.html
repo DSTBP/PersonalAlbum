@@ -36,6 +36,21 @@
             min-height: 100vh;
         }
         
+        /* 加载时隐藏滚动条并禁止滚动 */
+        body.loading {
+            overflow: hidden;
+        }
+        
+        /* 隐藏滚动条样式 */
+        body.loading::-webkit-scrollbar {
+            display: none;
+        }
+        
+        body.loading {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        
         .main-content {
             flex: 1;
             display: flex;
@@ -120,71 +135,7 @@
 
         <!-- 时间轴区域 -->
         <section id="timeline" class="timeline-section">
-            <div class="tl-item left" tabindex="0">
-                <div class="tl-bg" style="background-image: url(https://picsum.photos/600/800?random=1);"></div>
-                <div class="tl-year">
-                    <p class="f2 heading--sanSerif">2009</p>
-                </div>
-                <div class="tl-content">
-                    <h1>Fotografia to moja pasja od 2009 roku</h1>
-                    <p>Już od najmłodszych lat uwielbiałam uchwycać otaczający mnie świat na zdjęciach.</p>
-                </div>
-            </div>
-
-            <div class="tl-item right" tabindex="0">
-                <div class="tl-bg" style="background-image: url(https://picsum.photos/600/800?random=2);"></div>
-                <div class="tl-year">
-                    <p class="f2 heading--sanSerif">2015</p>
-                </div>
-                <div class="tl-content">
-                    <h1>W 2015 roku postanowiłam rozwijać swoje umiejętności</h1>
-                    <p>Ukończyłam studium fotograficzne.</p>
-                </div>
-            </div>
-
-            <div class="tl-item left" tabindex="0">
-                <div class="tl-bg" style="background-image: url(https://picsum.photos/600/800?random=3);"></div>
-                <div class="tl-year">
-                    <p class="f2 heading--sanSerif">2015</p>
-                </div>
-                <div class="tl-content">
-                    <h1>Nauka w szkole dała mi solidne podstawy warsztatowe</h1>
-                    <p>Pozwoliła mi spojrzeć na fotografię z zupełnie nowej perspektywy.</p>
-                </div>
-            </div>
-
-            <div class="tl-item right" tabindex="0">
-                <div class="tl-bg" style="background-image: url(https://picsum.photos/600/800?random=4);"></div>
-                <div class="tl-year">
-                    <p class="f2 heading--sanSerif">2024</p>
-                </div>
-                <div class="tl-content">
-                    <h1>W 2024 roku ukończyłam studia podyplomowe</h1>
-                    <p>Ukończyłam studia z zakresu Fotografii w terapii i rozwoju osobistym!</p>
-                </div>
-            </div>
-
-            <div class="tl-item left" tabindex="0">
-                <div class="tl-bg" style="background-image: url(https://picsum.photos/600/800?random=5);"></div>
-                <div class="tl-year">
-                    <p class="f2 heading--sanSerif">2024</p>
-                </div>
-                <div class="tl-content">
-                    <h1>Uwielbiam uchwycać piękno w jego najczystszej formie</h1>
-                    <p>Moją misją jest sprawić, by każdy, kto staje przed moim obiektywem, poczuł się swobodnie i pewnie, a zdjęcia stały się pamiątką na całe życie.</p>
-                </div>
-            </div>
-
-            <div class="tl-item right" tabindex="0">
-                <div class="tl-bg" style="background-image: url(https://picsum.photos/600/800?random=6);"></div>
-                <div class="tl-year">
-                    <p class="f2 heading--sanSerif">2024</p>
-                </div>
-                <div class="tl-content">
-                    <h1>Fotografowanie to dla mnie nie tylko zawód</h1>
-                    <p>Przede wszystkim sposób na wyrażanie siebie i opowiadanie historii.</p>
-                </div>
-            </div>
+            <!-- 时间轴内容将由JavaScript动态生成 -->
         </section>
 
         <footer>
@@ -206,7 +157,21 @@
     </div>
     
     <script>
+        // 页面加载时添加loading类，隐藏滚动条并禁止滚动
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.classList.add('loading');
+            window.scrollTo(0, 0);
+        });
+        
+        // 页面刷新时自动回到顶部
+        window.addEventListener('beforeunload', function() {
+            window.scrollTo(0, 0);
+        });
+        
+        // 页面加载完成后确保滚动到顶部并移除loading类
         window.addEventListener('load', function() {
+            window.scrollTo(0, 0);
+            
             const loader = document.querySelector('.loader');
             const pageWrapper = document.getElementById('page-wrapper');
 
@@ -215,6 +180,8 @@
                     loader.classList.add('hidden');
                     setTimeout(() => {
                         loader.style.display = 'none';
+                        // 移除loading类，恢复滚动功能
+                        document.body.classList.remove('loading');
                     }, 500);
                 }, 1000);
             }
@@ -230,6 +197,8 @@
     </script>
     <!-- 引入Momentum Slider库 -->
     <script src="https://cdn.jsdelivr.net/npm/momentum-slider@0.0.8/dist/momentum-slider.min.js"></script>
+    <!-- 引入图片加载器 -->
+    <script src="assets/js/timeline/images-loader.js"></script>
     <!-- 引入JavaScript文件 -->
     <script src="assets/js/timeline/script.js"></script>
     <script>

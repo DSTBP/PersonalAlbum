@@ -153,6 +153,23 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
     
-    // 初始化时间轴功能
-    initTimeline();
+    // 将initTimeline函数设为全局可用
+    window.initTimeline = initTimeline;
+    
+    // 创建轮播图初始化函数
+    function initCarousel() {
+        // 重新初始化轮播图
+        if (typeof msImages !== 'undefined') {
+            msImages.select(0);
+        }
+    }
+    
+    // 将initCarousel函数设为全局可用
+    window.initCarousel = initCarousel;
+    
+    // 如果没有图片加载器，直接初始化
+    if (!window.timelineImagesLoader) {
+        initTimeline();
+        initCarousel();
+    }
 });

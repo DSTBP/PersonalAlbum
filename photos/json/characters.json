@@ -1,0 +1,60 @@
+{
+  "characters": [
+    {
+      "id": 1,
+      "name": "Emily Kim",
+      "role": "Founder",
+      "image": "photos/characters/1.jpg",
+      "bio": "Emily is the founder and CEO of our company, with over 15 years of experience in the tech industry."
+    },
+    {
+      "id": 2,
+      "name": "Michael Steward",
+      "role": "Creative Director",
+      "image": "photos/characters/2.jpg",
+      "bio": "Michael leads our creative vision with a passion for innovative design and user experience."
+    },
+    {
+      "id": 3,
+      "name": "Emma Rodriguez",
+      "role": "Lead Developer",
+      "image": "photos/characters/3.jpg",
+      "bio": "Emma is our technical lead, bringing cutting-edge solutions to complex development challenges."
+    },
+    {
+      "id": 4,
+      "name": "Julia Gimmel",
+      "role": "UX Designer",
+      "image": "photos/characters/4.jpg",
+      "bio": "Julia creates intuitive and beautiful user experiences that delight our customers."
+    },
+    {
+      "id": 5,
+      "name": "Lisa Anderson",
+      "role": "Marketing Manager",
+      "image": "photos/characters/5.jpg",
+      "bio": "Lisa drives our marketing strategy with creative campaigns that connect with our audience."
+    },
+    {
+      "id": 6,
+      "name": "James Wilson",
+      "role": "Product Manager",
+      "image": "photos/characters/6.jpg",
+      "bio": "James oversees product development, ensuring we deliver value to our users."
+    },
+    {
+      "id": 7,
+      "name": "Sarah Chen",
+      "role": "Data Analyst",
+      "image": "photos/characters/7.jpg",
+      "bio": "Sarah transforms data into insights that drive our strategic decisions."
+    },
+    {
+      "id": 8,
+      "name": "David Park",
+      "role": "Operations Manager",
+      "image": "photos/characters/8.jpg",
+      "bio": "David ensures smooth operations and maintains our high standards of excellence."
+    }
+  ]
+} 

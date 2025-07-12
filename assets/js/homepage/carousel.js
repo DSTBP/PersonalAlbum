@@ -90,4 +90,13 @@ function init() {
     });
 }
 
-init();
+// 等待图片加载完成后再初始化
+if (window.imagesLoader) {
+    // 如果图片加载器存在，等待它完成后再初始化
+    window.imagesLoader.initializeContent().then(() => {
+        // 图片加载完成后，原有的初始化逻辑会被imagesLoader处理
+    });
+} else {
+    // 如果没有图片加载器，直接初始化
+    init();
+}

@@ -26,7 +26,7 @@ window.onload = function () {
 /**
  * 时间脉络轮播功能
  */
-document.addEventListener('DOMContentLoaded', () => {
+function initializeTimeline() {
     const timeline = document.querySelector('#timeline');
     if (!timeline) return;
 
@@ -104,13 +104,29 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = 'http://album.dstbp.net/timeline.html';
         });
     }
-});
+}
+
+// 等待图片加载完成后再初始化
+if (window.imagesLoader) {
+    // 如果图片加载器存在，等待它完成后再初始化
+    window.imagesLoader.initializeContent().then(() => {
+        // 图片加载完成后，原有的初始化逻辑会被imagesLoader处理
+    });
+} else {
+    // 如果没有图片加载器，直接初始化
+    document.addEventListener('DOMContentLoaded', () => {
+        initializeTimeline();
+        initializeImagery();
+        initializeCharacters();
+        initializeMoments();
+    });
+}
 
 
 /**
  * 意象集录轮播功能
  */
-$(document).ready(function () {
+function initializeImagery() {
     const allImages = $("#carousel div");
     const imageCount = allImages.length;
     let autoPlayInterval;
@@ -197,13 +213,13 @@ $(document).ready(function () {
 
     // 初始化
     initAutoPlay();
-});
+}
 
 
 /**
  * 知交影谱轮播功能
  */
-document.addEventListener('DOMContentLoaded', () => {
+function initializeCharacters() {
     const characters = document.querySelector('#characters');
     if (!characters) return;
 
@@ -231,6 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const slideWidth = tiles[0].offsetWidth + parseInt(getComputedStyle(tiles[0]).marginRight, 10);
     let currentIndex = visibleCount;
     let isTransitioning = false;
+    let intervalId = null;
 
     rowInner.style.transform = `translateX(${-slideWidth * currentIndex}px)`;
 
@@ -271,11 +288,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    setInterval(() => {
+    // 清除已有定时器，防止多次叠加
+    if (window._charactersIntervalId) {
+        clearInterval(window._charactersIntervalId);
+    }
+    window._charactersIntervalId = setInterval(() => {
         if (document.hidden) return;
         goToSlide(currentIndex - 1);
     }, 5000);
-});
+}
 
 
 /* 
@@ -283,7 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
 瞬间纪闻：3D 轮播功能
 ---------------------------
 */
-document.addEventListener('DOMContentLoaded', function () {
+function initializeMoments() {
     const momentsContainer = document.querySelector('#moments');
     if (!momentsContainer) return;
 
@@ -362,12 +383,13 @@ document.addEventListener('DOMContentLoaded', function () {
             window.location.href = 'http://album.dstbp.net/moments.html';
         });
     }
-});
+}
 
 // 返回顶部按钮功能
-// 注释掉自动滚动到顶部，避免干扰正常滚动
-// window.scrollTo({ top: 0, behavior: 'auto' });
 document.addEventListener('DOMContentLoaded', function () {
+    // 页面刷新时自动滚动到顶部
+    window.scrollTo({ top: 0, behavior: 'auto' });
+    
     const backToTopBtn = document.getElementById('back-to-top');
     if (!backToTopBtn) return;
     // 显示/隐藏按钮
@@ -385,3 +407,50 @@ document.addEventListener('DOMContentLoaded', function () {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 });
+
+// 为所有"查看更多"按钮添加点击事件
+function initializeViewMoreButtons() {
+    const viewMoreButtons = document.querySelectorAll('.view-more-btn');
+    
+    viewMoreButtons.forEach((button, index) => {
+        // 根据按钮的位置确定跳转URL
+        let targetUrl = '';
+        
+        // 获取按钮所在的section
+        const section = button.closest('section');
+        if (section) {
+            const sectionId = section.id;
+            switch (sectionId) {
+                case 'timeline':
+                    targetUrl = 'http://album.dstbp.net/timeline.html';
+                    break;
+                case 'imagery':
+                    targetUrl = 'http://album.dstbp.net/imagery.html';
+                    break;
+                case 'characters':
+                    targetUrl = 'http://album.dstbp.net/characters.html';
+                    break;
+                case 'moments':
+                    targetUrl = 'http://album.dstbp.net/moments.html';
+                    break;
+                default:
+                    // 如果没有找到对应的section，使用默认URL
+                    targetUrl = 'http://album.dstbp.net/';
+            }
+        }
+        
+        // 添加点击事件
+        button.addEventListener('click', function() {
+            window.location.href = targetUrl;
+        });
+    });
+}
+
+// 在图片加载完成后初始化"查看更多"按钮
+if (window.imagesLoader) {
+    window.imagesLoader.initializeContent().then(() => {
+        initializeViewMoreButtons();
+    });
+} else {
+    document.addEventListener('DOMContentLoaded', initializeViewMoreButtons);
+}
