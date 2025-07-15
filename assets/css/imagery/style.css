@@ -269,3 +269,74 @@ kbd {
 .top-nav-container nav a:hover {
     color: #ff3e6c;
 }
+
+/* === 意象集录轮播动画增强 === */
+#carousel {
+  position: relative;
+  height: 320px;
+  width: 100%;
+  margin: 0 auto;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#carousel div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 260px;
+  height: 320px;
+  margin-left: -130px;
+  margin-top: -160px;
+  opacity: 0;
+  z-index: 1;
+  transition: 
+    transform 0.6s cubic-bezier(.4,2,.6,1),
+    opacity 0.6s cubic-bezier(.4,2,.6,1),
+    z-index 0s 0.6s;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+}
+
+#carousel div.selected {
+  opacity: 1;
+  z-index: 5;
+  transform: translate(-50%, -50%) scale(1) rotateY(0deg);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.22);
+}
+
+#carousel div.next {
+  opacity: 0.7;
+  z-index: 4;
+  transform: translate(60%, -50%) scale(0.85) rotateY(-10deg);
+}
+
+#carousel div.prev {
+  opacity: 0.7;
+  z-index: 4;
+  transform: translate(-160%, -50%) scale(0.85) rotateY(10deg);
+}
+
+#carousel div.nextRightSecond {
+  opacity: 0.4;
+  z-index: 3;
+  transform: translate(180%, -50%) scale(0.7) rotateY(-20deg);
+}
+
+#carousel div.prevLeftSecond {
+  opacity: 0.4;
+  z-index: 3;
+  transform: translate(-280%, -50%) scale(0.7) rotateY(20deg);
+}
+
+#carousel div.hideLeft,
+#carousel div.hideRight {
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.5) rotateY(0deg);
+}
