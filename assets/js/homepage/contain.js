@@ -93,10 +93,32 @@ function initializeTimeline() {
     });
 
     // 7. 自动滚动
-    setInterval(() => {
+    let timelineInterval = setInterval(() => {
         if (document.hidden) return;
         goToSlide(currentIndex + 1);
     }, 5000);
+
+    // 新增：左右按钮切换
+    const prevBtn = timeline.querySelector('.timeline-nav .prev');
+    const nextBtn = timeline.querySelector('.timeline-nav .next');
+    if (prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => {
+            goToSlide(currentIndex - 1);
+            clearInterval(timelineInterval);
+            timelineInterval = setInterval(() => {
+                if (document.hidden) return;
+                goToSlide(currentIndex + 1);
+            }, 5000);
+        });
+        nextBtn.addEventListener('click', () => {
+            goToSlide(currentIndex + 1);
+            clearInterval(timelineInterval);
+            timelineInterval = setInterval(() => {
+                if (document.hidden) return;
+                goToSlide(currentIndex + 1);
+            }, 5000);
+        });
+    }
 
     const viewMoreBtn = document.querySelector('.view-more-btn');
     if (viewMoreBtn) {

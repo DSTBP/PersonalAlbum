@@ -2,39 +2,39 @@
   "carousel": [
     {
       "id": 1,
-      "src": "photos/home/26.jpg",
-      "title": "Lossless Youths",
+      "src": "photos/home/1.jpg",
+      "title": "散落课桌的夏",
       "description": "忽然有一天你暮然回首，过往的种种像秋叶，散在时间的长河，那些光阴的故事，离去的人，匆匆的过客，好像再也遇不到了。于是拼了命的想，想要把能记住的记录下来，哪怕仅仅是一丝的情绪，哪怕只有一点模糊的感受，那都是证明，证明我爱，爱这世间的所有。"
     },
     {
       "id": 2,
-      "src": "photos/home/27.jpg",
-      "title": "Estrange Bond",
-      "description": "忽然有一天你暮然回首，过往的种种像秋叶，散在时间的长河，那些光阴的故事，离去的人，匆匆的过客，好像再也遇不到了。于是拼了命的想，想要把能记住的记录下来，哪怕仅仅是一丝的情绪，哪怕只有一点模糊的感受，那都是证明，证明我爱，爱这世间的所有。"
+      "src": "photos/home/2.jpg",
+      "title": "未寄出的告别信",
+      "description": "当时只道是寻常，燕子去了，有再来的时候；杨柳枯了，在再青的时候；桃花谢了，有再开的时候。但是，聪明的，你告诉我，我们的日子为什么一去不复返呢？——是有人偷了他们罢：那是谁？又藏在何处呢？是他们自己逃走了罢：现在又到了那里呢?"
     },
     {
       "id": 3,
-      "src": "photos/home/28.jpg",
-      "title": "The Gate Keeper",
-      "description": "忽然有一天你暮然回首，过往的种种像秋叶，散在时间的长河，那些光阴的故事，离去的人，匆匆的过客，好像再也遇不到了。于是拼了命的想，想要把能记住的记录下来，哪怕仅仅是一丝的情绪，哪怕只有一点模糊的感受，那都是证明，证明我爱，爱这世间的所有。"
+      "src": "photos/home/3.jpg",
+      "title": "被蝉鸣啃碎的毕业照",
+      "description": "那天我不知怎么开口，就低着头看着鞋带，你在旁边被蚊子叮得满身包，气得回家了。啧，二十岁的夏天好短啊。"
     },
     {
       "id": 4,
-      "src": "photos/home/29.jpg",
-      "title": "Last Trace Of Us",
-      "description": "忽然有一天你暮然回首，过往的种种像秋叶，散在时间的长河，那些光阴的故事，离去的人，匆匆的过客，好像再也遇不到了。于是拼了命的想，想要把能记住的记录下来，哪怕仅仅是一丝的情绪，哪怕只有一点模糊的感受，那都是证明，证明我爱，爱这世间的所有。"
+      "src": "photos/home/4.jpg",
+      "title": "行李箱里的旧时光",
+      "description": "现在我在一场旅行中，途经的每个城市几乎都有朋友。光影之间觥筹交错，今日的欢笑明天的告别。世上哪有不散的宴席，每个人都在继续向前。"
     },
     {
       "id": 5,
-      "src": "photos/home/30.jpg",
-      "title": "Urban Decay",
-      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim."
+      "src": "photos/home/5.jpg",
+      "title": "青春在路口打了个结",
+      "description": "再漫长的故事，也有完结的时候，行驶得再慢的列车，也有一个又一个的站台；再亲密无间的旅伴，也有分开的时候。旅途上经历的事情，可能会被我们遗忘；旅途上学到的东西，我们却会将它记在心间。"
     },
     {
       "id": 6,
-      "src": "photos/home/31.jpg",
-      "title": "The Migration",
-      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim."
+      "src": "photos/home/6.jpg",
+      "title": "外卖地址里的大学路",
+      "description": "夜深人静，就把心掏出来缝缝补补 ，一觉醒来，又是信心百倍。活着，就要逢山开路，遇水架桥。自渡是能力，渡人是格局，睡前原谅一切，醒来便是重生。"
     }
   ],
   "timeline": [
