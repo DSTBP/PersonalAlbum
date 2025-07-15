@@ -39,56 +39,32 @@
   ],
   "timeline": [
     {
-      "src": "photos/home/1.jpg",
+      "src": "photos/home/7.jpg",
       "title": "校园记忆"
     },
     {
-      "src": "photos/home/2.jpg",
-      "title": "初入社会"
-    },
-    {
-      "src": "photos/home/3.jpg",
-      "title": "初入社会"
-    },
-    {
-      "src": "photos/home/4.jpg",
-      "title": "城市一角"
-    },
-    {
-      "src": "photos/home/5.jpg",
-      "title": "旅途风景"
-    },
-    {
-      "src": "photos/home/6.jpg",
-      "title": "某个午后"
-    },
-    {
-      "src": "photos/home/7.jpg",
-      "title": "朋友小聚"
-    },
-    {
       "src": "photos/home/8.jpg",
-      "title": "一次远行"
+      "title": "初入社会"
     },
     {
       "src": "photos/home/9.jpg",
-      "title": "一次远行"
+      "title": "初入社会"
     },
     {
       "src": "photos/home/10.jpg",
-      "title": "一次远行"
+      "title": "城市一角"
     },
     {
       "src": "photos/home/11.jpg",
-      "title": "一次远行"
+      "title": "旅途风景"
     },
     {
       "src": "photos/home/12.jpg",
-      "title": "一次远行"
+      "title": "某个午后"
     },
     {
       "src": "photos/home/13.jpg",
-      "title": "一次远行"
+      "title": "朋友小聚"
     },
     {
       "src": "photos/home/14.jpg",
@@ -97,110 +73,134 @@
     {
       "src": "photos/home/15.jpg",
       "title": "一次远行"
+    },
+    {
+      "src": "photos/home/16.jpg",
+      "title": "一次远行"
+    },
+    {
+      "src": "photos/home/17.jpg",
+      "title": "一次远行"
+    },
+    {
+      "src": "photos/home/18.jpg",
+      "title": "一次远行"
+    },
+    {
+      "src": "photos/home/19.jpg",
+      "title": "一次远行"
+    },
+    {
+      "src": "photos/home/20.jpg",
+      "title": "一次远行"
+    },
+    {
+      "src": "photos/home/21.jpg",
+      "title": "一次远行"
     }
   ],
   "imagery": [
     {
-      "src": "photos/home/43.jpg",
+      "src": "photos/home/22.jpg",
       "alt": "图片1"
     },
     {
-      "src": "photos/home/21.jpg",
+      "src": "photos/home/23.jpg",
       "alt": "图片2"
     },
     {
-      "src": "photos/home/3.jpg",
+      "src": "photos/home/24.jpg",
       "alt": "图片3"
     },
     {
-      "src": "photos/home/34.jpg",
+      "src": "photos/home/25.jpg",
       "alt": "图片4"
     },
     {
-      "src": "photos/home/54.jpg",
+      "src": "photos/home/26.jpg",
       "alt": "图片5"
     },
     {
-      "src": "photos/home/6.jpg",
+      "src": "photos/home/27.jpg",
       "alt": "图片6"
     },
     {
-      "src": "photos/home/7.jpg",
+      "src": "photos/home/28.jpg",
       "alt": "图片7"
     }
   ],
   "characters": [
     {
-      "src": "photos/home/57.jpg",
+      "src": "photos/home/29.jpg",
       "alt": "知交影谱 1",
       "title": "街角咖啡馆"
     },
     {
-      "src": "photos/home/65.jpg",
+      "src": "photos/home/30.jpg",
       "alt": "知交影谱 2",
       "title": "霓虹灯下"
     },
     {
-      "src": "photos/home/IMG_20221020_144400.jpg",
+      "src": "photos/home/31.jpg",
       "alt": "知交影谱 3",
       "title": "老市场的喧嚣"
     },
     {
-      "src": "photos/home/25.jpg",
+      "src": "photos/home/32.jpg",
       "alt": "知交影谱 4",
       "title": "归家的人"
     },
     {
-      "src": "photos/home/28.jpg",
+      "src": "photos/home/33.jpg",
       "alt": "知交影谱 5",
       "title": "天台的风"
     },
     {
-      "src": "photos/home/29.jpg",
+      "src": "photos/home/34.jpg",
       "alt": "知交影谱 6",
       "title": "路灯下的等候"
     },
     {
-      "src": "photos/home/30.jpg",
+      "src": "photos/home/35.jpg",
       "alt": "知交影谱 7",
       "title": "窗边的独白"
     }
   ],
   "moments": [
     {
-      "src": "photos/home/1.jpg",
+      "src": "photos/home/36.jpg",
       "alt": "瞬间 1"
     },
     {
-      "src": "photos/home/2.jpg",
+      "src": "photos/home/37.jpg",
       "alt": "瞬间 2"
     },
     {
-      "src": "photos/home/3.jpg",
+      "src": "photos/home/38.jpg",
       "alt": "瞬间 3"
     },
     {
-      "src": "photos/home/4.jpg",
+      "src": "photos/home/39.jpg",
       "alt": "瞬间 4"
     },
     {
-      "src": "photos/home/5.jpg",
+      "src": "photos/home/40.jpg",
       "alt": "瞬间 5"
     },
     {
-      "src": "photos/home/6.jpg",
+      "src": "photos/home/41.jpg",
       "alt": "瞬间 6"
     },
     {
-      "src": "photos/home/8.jpg",
+      "src": "photos/home/42.jpg",
       "alt": "瞬间 7"
     },
     {
-      "src": "photos/home/9.jpg",
+      "src": "photos/home/43.jpg",
       "alt": "瞬间 8"
     },
     {
-      "src": "photos/home/10.jpg",
+      "src": "photos/home/44.jpg",
       "alt": "瞬间 9"
     }
   ]
